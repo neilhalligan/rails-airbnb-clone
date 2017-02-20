@@ -14,6 +14,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
+    @car.user = current_user
     # TODO add other params (user)
     # TODO add check for photo (as default value is nil with cloudinary)
     if @car.save
