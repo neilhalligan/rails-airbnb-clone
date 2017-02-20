@@ -37,7 +37,8 @@ class CarsController < ApplicationController
   end
 
   def destroy
-    @car.delete # what if
+    @car.destroy     # TODO set validations on booking side
+    redirect_to root  # TODO s/b dashboard
   end
 
   private
