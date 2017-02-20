@@ -11,11 +11,11 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.user =
+    @booking.user = current_user
     @booking.car = @car
     @booking.pending = true
     if @booking.save
-      redirect_to ????
+      redirect_to booking_path
     else
       render :new
     end
