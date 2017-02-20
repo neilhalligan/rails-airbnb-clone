@@ -1,8 +1,11 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [ ]
+  before_action :set_car, only: [ :show, :edit, :update, :destroy]
 
   def index
     @cars = Car.all
+  end
+
+  def show
   end
 
   def new
@@ -12,10 +15,19 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     if @car.save
-      redirect_to cars_path
+      redirect_to car_path(@car)
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private
