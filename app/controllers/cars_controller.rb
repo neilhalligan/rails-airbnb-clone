@@ -14,6 +14,8 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
+    # TODO add other params (user)
+    # TODO add check for photo (as default value is nil with cloudinary)
     if @car.save
       redirect_to car_path(@car)
     else
@@ -25,9 +27,16 @@ class CarsController < ApplicationController
   end
 
   def update
+    @car = Car.patch(car_params)
+    if @car.save
+      redirect_to car_path(@car)
+    else
+      render :edit # TODO confirm this works
+    end
   end
 
   def destroy
+    @car.delete # what if
   end
 
   private
