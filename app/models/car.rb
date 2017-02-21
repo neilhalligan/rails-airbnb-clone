@@ -1,5 +1,5 @@
 class Car < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   has_many :users, through: :bookings
 
   validates :model, presence: true
