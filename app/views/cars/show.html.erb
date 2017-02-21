@@ -72,6 +72,9 @@
 <%= @car.brand %>
 <%= @car.model %>
 <%= @car.description %>
+<%= @car.user.name %>
+
+<!-- link_to "Owner profile", user_path(@car.user ) -->
 
 <%= link_to "Delete car", car_path(@car), method: :delete %>
 
@@ -80,3 +83,4 @@
     <%= f.input :end_date %>
     <%= f.submit "Book your ride" %>
 <% end %>
+
