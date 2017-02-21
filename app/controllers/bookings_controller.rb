@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   before_action :set_car, only: [:create, :destroy]
 
   def show
+    @review = Review.new
   end
 
   def new
