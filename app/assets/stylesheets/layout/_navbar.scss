@@ -12,9 +12,28 @@
   color: white;
 }
 
+.navbar-overlay {
+  display: flex;
+  height: 65px;
+  padding: 0px 30px;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: transparent;
+}
+
+
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
   position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+  width: 100%;
+}
+
+.overlay-fixed {
+  position: absolute;
   left: 0px;
   top: 0px;
   z-index: 1;
