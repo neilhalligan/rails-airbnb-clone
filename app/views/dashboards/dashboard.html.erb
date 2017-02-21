@@ -1,38 +1,24 @@
-<div class="card" style="background: red;">
-  <div class="card-category">Popular</div>
-  <div class="card-description">
-    <h2>Some stuff</h2>
-    <p>Very cool stuff, useful and smart</p>
-  </div>
-  <img class="card-user avatar" src="user.jpg">
-  <a class="card-link" href="#" ></a>
-</div>
+<!-- current_user
+@bookings = current_user.bookings
+    @cars = current_user.cars
+    @bookings.each.car -->
 
+    Hi <% current_user %>
 
-<div class="profile-header-wrapper">
-      <div class="container profile-header-container text-center">
-        <div class="profile-header-infos">
+    your cars <% @cars.each do |car| %>
+    <%= car.brand%>
+    <%= car.model%>
+    <% end %>
 
-          <h1>papillard</h1>
-          <h2>co-founder @LeWagon</h2>
-        </div>
-        <div class="tabs">
-          <a class="tab active" href="#">
-            <h3>350</h3>
-            <p>Upvoted</p>
-          </a>
-          <a class="tab" href="#">
-            <h3>456</h3>
-            <p>Submitted</p>
-          </a>
-          <a class="tab" href="#">
-            <h3>189</h3>
-            <p>Followers</p>
-          </a>
-          <a class="tab" href="#">
-            <h3>13</h3>
-            <p>Following</p>
-          </a>
-        </div>
-      </div>
-    </div>
+    your rental cars <% @bookings.each do |booking| %>
+    <%= booking.car.brand%>
+    <%= booking.car.model%>
+    <% end %>
+
+    your bookings <% @bookings.each do |booking| %>
+    owner email <%= booking.user.email%>
+    <br>
+    owner name<%= booking.user.name%>
+    <br>
+    owner car <%= booking.car.model%> <%= booking.car.brand%>
+    <% end %>
