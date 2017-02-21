@@ -1,12 +1,24 @@
 
 
-<h1>Car Listings</h1>
+<div class="container text-center">
+  <h1>Car Listings</h1>
+  <div class="row">
+    <% @cars.each do |car| %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://media1.santabanta.com/full1/Cars/Vintage%20and%20Classic%20Cars/vintage-and-classic-cars-56a.jpg');">
+        <div class="card-location"> @car.location
+        </div>
+        <div class="card-description">
+          <h2><%= car.brand %> <%= car.model %></h2>
+        </div>
+        <%= link_to "", car_path(car), class: "card-link" %>
+      </div>
+      <%= link_to "Edit", edit_car_path(car) %>
+    </div>
+    <%end%>
+  </div>
+</div>
 
-<p>And this is a test paragraph. It has a lot of words, blah blah bla.</p>
-
-<% @cars.each do |car| %>
-<%= car.brand%>
-<%= car.model%>
-<%end%>
-
-<%= link_to "new car", new_car_path %>
+<div class="text-center padded">
+  <%= link_to "Add new car", new_car_path, class: "btn btn-success" %>
+</div>
