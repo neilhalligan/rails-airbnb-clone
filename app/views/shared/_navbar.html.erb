@@ -3,10 +3,26 @@
   <a href="/" class="navbar-wagon-brand">
     <img src="http://www.free-icons-download.net/images/black-classic-car-icon-20764.png" />
   </a>
-  <h3>Classic Cars</h3>
+  <h3><%= link_to "Classic Cars", cars_path, class: "navbar-wagon-link"%></h3>
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
+    <!-- user login or logout -->
+    <% if user_signed_in? %>
+      <%= link_to "LOG OUT", destroy_user_session_path, {class: "navbar-wagon-item navbar-wagon-link", method: :delete}%>
+    <%else%>
+      <%= link_to "LOG IN", new_user_session_path, class: "navbar-wagon-item navbar-wagon-link"%>
+    <%end%>
+
+    <!-- Search form -->
+    <%= form_tag search_cars_path do %>
+      <form action="" class="navbar-wagon-search">
+        <input type="text" name="query" class="navbar-wagon-search-input" autocomplete="off" placeholder="Search something">
+        <button type="submit" class="navbar-wagon-search-btn">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    <%end%>
     <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
