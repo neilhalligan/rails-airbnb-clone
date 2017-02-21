@@ -1,7 +1,71 @@
-show.html.erb
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+          <div class="text-center">
+            <p> @car.image </p>
+            <h1><%= @car.brand %> <%= @car.model %></h1>
+            <p> @car.location </p>
+            <i class="fa fa-star" style="color: #ffb400"></i>
+            <i class="fa fa-star" style="color: #ffb400"></i>
+            <i class="fa fa-star" style="color: #ffb400"></i>
+            <i class="fa fa-star" style="color: #ffb400"></i>
+            <i class="fa fa-star" style="color: #cacccd"></i>
+          </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <h2>About the Car</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <hr>
+        <div class="row" id="flat-data">
+          <div class="col-xs-12 col-sm-2">
+            The Specs
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <ul class="list-unstyled">
+              <li>Owner: <strong><%= @car.user.name %></strong></li>
+              <li>Model: <strong><%= @car.brand %> <%= @car.model %></strong></li>
+              <li>Year: <strong> @car.year </strong></li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-4">
+            <ul class="list-unstyled">
+              <li>Condition: <strong><%= @car.description %></strong></li>
+              <li>Location: <strong> @car.location </strong></li>
+              <li>Rates: <strong> @car.price </strong></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+    <div class="row padded">
+      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+        <form action="#" >
+          <h4>Book this car</h3>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-xs-6">
+                <input type="text" class="form-control" placeholder="rental date" id="checkin">
+              </div>
+              <div class="col-xs-6">
+                <input type="text" class="form-control" placeholder="return date">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <select name="" id="passengers" class="form-control">
+              <option value="1">1 passenger</option>
+              <option value="2">2 passengers</option>
+              <option value="3">none</option>
+            </select>
+          </div>
+          <input type="submit" class="btn btn-danger" value="Book it" style="width: 100%">
+        </form>
+      </div>
+    </div>
+  </div>
 
-<%= @car.brand %>
-<%= @car.model %>
-<%= @car.description %>
-
-<%= link_to "Delete car", car_path(@car), method: :delete %>
