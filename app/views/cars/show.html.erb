@@ -41,12 +41,4 @@
         <hr>
       </div>
     </div>
-    <%= render 'booking_form' %>
-
-
-<%= simple_form_for [@car, @booking] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.submit "Book your ride" %>
-<% end %>
-
+    <%=render 'booking_form'%>

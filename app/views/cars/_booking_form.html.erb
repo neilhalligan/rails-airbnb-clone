@@ -1,14 +1,7 @@
 
-<div class="row padded">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <form action="#" >
-          <h4>Book this car</h3>
+<%= simple_form_for [@car, @booking] do |f| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.submit "Book your ride" %>
+<% end %>
 
-          <%= simple_form_for [@car, @booking] do |f| %>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
-          <%= f.submit "Book your ride", class: "btn btn-primary" %>
-          <% end %>
-      </div>
-    </div>
-  </div>
