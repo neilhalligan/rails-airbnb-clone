@@ -3,6 +3,9 @@ class BookingsController < ApplicationController
   before_action :set_car, only: [:create, :destroy]
 
   def show
+    @owner = @booking.car.user
+    @renter = @booking.user
+    @car = @booking.car
   end
 
   def new
