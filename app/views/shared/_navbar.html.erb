@@ -6,7 +6,15 @@
   <h3>Classic Cars</h3>
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
-
+    <!-- Search form -->
+    <%= form_tag search_projects_path do %>
+      <form action="" class="navbar-wagon-search">
+        <input type="text" name="query" class="navbar-wagon-search-input" autocomplete="off" placeholder="Search something">
+        <button type="submit" class="navbar-wagon-search-btn">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    <%end%>
     <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
