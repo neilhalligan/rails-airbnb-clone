@@ -1,7 +1,7 @@
 <!-- current_user
 @bookings = current_user.bookings
     @cars = current_user.cars
-    @rental_cars = current_user.cars -->
+    @bookings.each.car -->
 
     Hi <% current_user %>
 
@@ -10,3 +10,15 @@
     <%= car.model%>
     <% end %>
 
+    your rental cars <% @bookings.each do |booking| %>
+    <%= booking.car.brand%>
+    <%= booking.car.model%>
+    <% end %>
+
+    your bookings <% @bookings.each do |booking| %>
+    owner email <%= booking.user.email%>
+    <br>
+    owner name<%= booking.user.name%>
+    <br>
+    owner car <%= booking.car.model%> <%= booking.car.brand%>
+    <% end %>
