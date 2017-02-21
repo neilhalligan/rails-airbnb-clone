@@ -1,9 +1,9 @@
-name <%= @user.name%>
+name <%= @user.name %>
 <br>
-email <%= @user.email%>
+email <%= @user.email %>
 <br>
 cars <% @user.cars.each do |car| %>
-<%= car.brand%>
-<%= car.model%>
+<%= car.brand %>
+<%= car.model %>
 <br>
 <%end%>

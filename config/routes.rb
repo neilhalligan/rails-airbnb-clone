@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root to: 'cars#index'
 
   post 'cars/search' => 'cars#search', as: 'search_cars'
-  get 'users/:id' => 'dashboard#show', as: 'user'
-  get 'dashboard' => 'dashbaord#dashboard', as: 'dashboard'
+  get 'users/:id' => 'dashboards#show', as: 'user'
+  get 'dashboard' => 'dashboards#dashboard', as: 'dashboard'
 
   resources :bookings, only: [:show]
 

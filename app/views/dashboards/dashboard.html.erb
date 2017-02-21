@@ -3,16 +3,10 @@
     @cars = current_user.cars
     @rental_cars = current_user.cars -->
 
-    Hi <% current_user%>
+    Hi <% current_user %>
 
-    your cars <% @cars.each do%>
+    your cars <% @cars.each do |car| %>
     <%= car.brand%>
     <%= car.model%>
-    <%end%>
-
-    your rented cars
-    <% @rental_cars.each do %>
-    <%= car.brand%>
-    <%= car.model%>
-    <%end%>
+    <% end %>
 
