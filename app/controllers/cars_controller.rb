@@ -5,7 +5,7 @@ class CarsController < ApplicationController
   def search
     @q = "%#{params[:query]}%"
     @cars = Car.where("brand LIKE ? or description LIKE ? or model LIKE ?", @q, @q, @q)
-    render :index
+    render :search
   end
 
   def index
