@@ -5,3 +5,9 @@ show.html.erb
 <%= @car.description %>
 
 <%= link_to "Delete car", car_path(@car), method: :delete %>
+
+<%= simple_form_for [@car, @booking] do |f| %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.submit "Book your ride" %>
+<% end %>
