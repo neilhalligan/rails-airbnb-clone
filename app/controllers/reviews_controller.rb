@@ -5,12 +5,12 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.booking = @booking
-    @review.save
-  #     redirect_to dashboard
-  #   else
-  #     render bookings showpage
-  #   end
-  # end
+    if @review.save
+      redirect_to dashboard_path # not sure about this syntax
+    else
+      render "bookings/show" # not sure about this syntax
+    end
+  end
 
 
   private

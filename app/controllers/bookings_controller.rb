@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to car_path(@car)  # TODO s/b dashboard
+    redirect_to dashboard_path
   end
 
   private
