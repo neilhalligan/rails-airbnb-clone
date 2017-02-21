@@ -1,13 +1,12 @@
-<div class="navbar-overlay overlay-fixed">
-  <h3><%= link_to "Classic Cars", cars_path, class: "navbar-wagon-link"%></h3>
-</div>
+<!-- <div class="navbar-overlay overlay-fixed"></div> -->
 
 <div class="navbar-wagon">
   <!-- Logo -->
   <a href="/" class="navbar-wagon-brand">
     <%= image_tag("classic_car_icon.png") %>
-
   </a>
+  <!-- Title -->
+  <h3><%= link_to "Classic Cars", cars_path, class: "navbar-wagon-link"%></h3>
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
@@ -17,6 +16,7 @@
     <%else%>
       <%= link_to "LOG IN", new_user_session_path, class: "navbar-wagon-item navbar-wagon-link"%>
     <%end%>
+
     <!-- facebook avatar SHOULD USE A HELPER FOR THIS-->
     <% avatar_url = "http://placehold.it/30x30" %>
     <% avatar_url = current_user.facebook_picture_url if user_signed_in? %>
