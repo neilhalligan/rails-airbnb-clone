@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
+  has_attachment :user_image
 end
