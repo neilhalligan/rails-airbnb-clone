@@ -13,6 +13,10 @@
     <%else%>
       <%= link_to "LOG IN", new_user_session_path, class: "navbar-wagon-item navbar-wagon-link"%>
     <%end%>
+    <!-- facebook avatar SHOULD USE A HELPER FOR THIS-->
+    <% avatar_url = "http://placehold.it/30x30" %>
+    <% avatar_url = current_user.facebook_picture_url if user_signed_in? %>
+    <%= image_tag avatar_url, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
 
     <!-- Search form -->
     <%= form_tag search_cars_path do %>
