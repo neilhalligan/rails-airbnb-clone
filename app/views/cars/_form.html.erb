@@ -2,6 +2,6 @@
   <%= f.input :model %>
   <%= f.input :brand %>
   <%= f.input :description %>
-  <%= f.input :car_image %> <!-- TODO add cloudinary -->
+  <%= f.input :car_image, as: :attachinary %><!-- TODO add cloudinary -->
   <%= f.submit :submit %>
 <% end %>
