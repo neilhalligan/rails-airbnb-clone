@@ -44,39 +44,12 @@
     </div>
     <div class="row padded">
       <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <form action="#" >
-          <h4>Book this car</h3>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-xs-6">
-                <input type="text" class="form-control" placeholder="rental date" id="checkin">
-              </div>
-              <div class="col-xs-6">
-                <input type="text" class="form-control" placeholder="return date">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <select name="" id="passengers" class="form-control">
-              <option value="1">1 passenger</option>
-              <option value="2">2 passengers</option>
-              <option value="3">none</option>
-            </select>
-          </div>
-          <input type="submit" class="btn btn-danger" value="Book it" style="width: 100%">
-        </form>
+
+      <%= render 'booking_form' %>
+
       </div>
     </div>
   </div>
 
-<%= @car.brand %>
-<%= @car.model %>
-<%= @car.description %>
 
-<%= link_to "Delete car", car_path(@car), method: :delete %>
 
-<%= simple_form_for [@car, @booking] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.submit "Book your ride" %>
-<% end %>
