@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [ :show, :edit, :update, :destroy]
-
+  before_action :set_car, only: [ :show, :edit, :update, :destroy ]
+  before_action :authenticate_user!, only: [ :create ]
   def index
     @cars = Car.all
   end
@@ -28,7 +28,7 @@ class CarsController < ApplicationController
   end
 
   def update
-    @car = Car.patch(car_params)
+    @car.update(car_params)
     if @car.save
       redirect_to car_path(@car)
     else
@@ -38,7 +38,7 @@ class CarsController < ApplicationController
 
   def destroy
     @car.destroy     # TODO set validations on booking side
-    redirect_to root  # TODO s/b dashboard
+    redirect_to cars_path  # TODO s/b dashboard
   end
 
   private
@@ -48,6 +48,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:brand, :model)
+    params.require(:car).permit(:brand, :model, :description)
   end
 end
