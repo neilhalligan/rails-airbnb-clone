@@ -1,0 +1,12 @@
+<!-- current_user
+@bookings = current_user.bookings
+    @cars = current_user.cars
+    @rental_cars = current_user.cars -->
+
+    Hi <% current_user %>
+
+    your cars <% @cars.each do |car| %>
+    <%= car.brand%>
+    <%= car.model%>
+    <% end %>
+

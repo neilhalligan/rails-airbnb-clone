@@ -1,13 +1,13 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [ :show, :edit, :update, :destroy ]
-  before_action :authenticate_user!, only: [ :create ]
+  before_action :authenticate_user!, except: [ :index , :show ]
 
   def search
     @q = "%#{params[:query]}%"
     @cars = Car.where("brand LIKE ? or description LIKE ? or model LIKE ?", @q, @q, @q)
     render :index
   end
-
+  
   def index
     @cars = Car.all
   end
@@ -56,6 +56,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:brand, :model, :description)
+    params.require(:car).permit(:brand, :model, :description, :car_image)
   end
 end

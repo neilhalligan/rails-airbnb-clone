@@ -7,5 +7,8 @@ class User < ApplicationRecord
   has_many :cars, dependent: :destroy
   has_many :bookings, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+
+  has_attachment :user_image
+  # validates :name, presence: true, uniqueness: true
+
 end
