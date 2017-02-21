@@ -7,6 +7,23 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
+    <!-- user login or logout -->
+    <% if user_signed_in? %>
+      <%= link_to "LOG OUT", destroy_user_session_path, class: "navbar-wagon-item navbar-wagon-link"%>
+      <div class="badge-container">
+        <div class="badge badge-blue">3</div>
+      </div>
+    <%end%>
+
+    <!-- Search form -->
+    <%= form_tag search_cars_path do %>
+      <form action="" class="navbar-wagon-search">
+        <input type="text" name="query" class="navbar-wagon-search-input" autocomplete="off" placeholder="Search something">
+        <button type="submit" class="navbar-wagon-search-btn">
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+    <%end%>
     <!-- Profile picture and dropdown -->
     <div class="navbar-wagon-item">
       <div class="dropdown">
