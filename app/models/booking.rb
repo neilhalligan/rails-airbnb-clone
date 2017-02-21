@@ -1,8 +1,8 @@
 class Booking < ApplicationRecord
-  belongs_to :user_id
-  belongs_to :car_id
+  belongs_to :user
+  belongs_to :car
 
   validates :start_date, presence: true
   validates :end_date, presence: true
-  validates :user_id, uniqueness: {scope: :car_id }
+  validates :user, uniqueness: {scope: :car }
 end
