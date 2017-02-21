@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
-  before_action :set_car, only: [:create]
+  before_action :set_car, only: [:create, :destroy]
 
   def show
   end
@@ -17,12 +17,12 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking)
     else
-      render :new
+      render "cars/show"
     end
   end
 
   def edit
-    @booking = Booking.patch(booking_params)
+    @booking = Booking.update(booking_params)
     if @booking.save
       redirect_to booking_path(@booking)
     else
@@ -36,7 +36,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to root  # TODO s/b dashboard
+    redirect_to car_path(@car)  # TODO s/b dashboard
   end
 
   private
