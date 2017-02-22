@@ -17,7 +17,6 @@ class CarsController < ApplicationController
     # only select cars with markers
     # @cars = Car.where.not(latitude: nil, longitude: nil) if put map on index
     # marker.infowindow render_to_string(partial: "/cars/map_box", locals: { car: car })
-    end
   end
 
   def show
