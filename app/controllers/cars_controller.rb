@@ -6,8 +6,9 @@ class CarsController < ApplicationController
     @q = "%#{params[:query]}%"
     @cars = Car.where("brand LIKE ? or description LIKE ? or model LIKE ?", @q, @q, @q)
     @hash = Gmaps4rails.build_markers(@cars) do |car, marker|
-    marker.lat car.latitude
-    marker.lng car.longitude
+      marker.lat car.latitude
+      marker.lng car.longitude
+    end
     render :search
   end
 
