@@ -19,7 +19,7 @@ class BookingsController < ApplicationController
     @booking.car = @car
     @booking.pending = true
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to dashboard_path
     else
       render "cars/show"
     end
