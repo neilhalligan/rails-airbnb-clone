@@ -3,7 +3,7 @@
   <div class="row">
     <% @cars.each do |car| %>
     <div class="col-xs-12 col-sm-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://media1.santabanta.com/full1/Cars/Vintage%20and%20Classic%20Cars/vintage-and-classic-cars-56a.jpg');">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= car_image_url?(car) %>');">
         <div class="card-location"> @car.location
         </div>
         <div class="card-description">
