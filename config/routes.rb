@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get 'users/:id' => 'dashboards#show', as: 'user'
   get 'dashboard' => 'dashboards#dashboard', as: 'dashboard'
 
-  resources :bookings, only: [:show]
+  resources :bookings, only: [:show] do
+    resources :reviews, only: [:create]
+  end
+
 
   resources :cars do
     resources :bookings, except: [:show]
