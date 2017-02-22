@@ -23,6 +23,8 @@
     <div class="col-xs-12 col-sm-6">
       <ul>
         <li>Car: <%= link_to "#{booking.car.brand} #{booking.car.model}", car_path(booking.car) %></li>
+        <li>Start Date: <%= booking.start_date %></li>
+        <li>End Date: <%= booking.end_date %></li>
         <li>Owner name: <%= booking.car.user.name %></li>
         <li>Owner email: <%= link_to booking.car.user.email, user_path(booking.car.user) %></li>
       </ul>
