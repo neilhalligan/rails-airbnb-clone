@@ -10,10 +10,18 @@ class CarsController < ApplicationController
 
   def index
     @cars = Car.all
+    # only select cars with markers
+    # @cars = Car.where.not(latitude: nil, longitude: nil) if put map on index
+    @hash = Gmaps4rails.build_markers(@cars) do |car, marker|
+    marker.lat car.latitude
+    marker.lng car.longitude
+    # marker.infowindow render_to_string(partial: "/cars/map_box", locals: { car: car })
+    end
   end
 
   def show
     @booking = Booking.new
+    @car_coordinates = { lat: @car.latitude, lng: @car.longitude }
   end
 
   def new
