@@ -1,3 +1,4 @@
+
 <%= @booking %>
 
 
@@ -8,6 +9,24 @@
   <%= f.input :rating %> <!-- or something to pick between 1-5  -->
   <%= f.submit "post review", class: "btn btn-primary" %>
 <% end %>
+
+<h2>Booking Show</h2>
+<!-- FOR FRONT END use following variables:
+    @owner = @booking.car.user
+    @renter = @booking.user
+    @car = @booking.car
+    @booking
+ -->
+owner name: <%= @owner.name %>
+<br>
+owner email: <%= @owner.email %>
+<br>
+renter name: <%= @renter.name %>
+<br>
+renter email: <%= @renter.email %>
+<br>
+car model: <%= @car.model %> | car brand: <%= @car.brand %>
+
 
 <!--
 has a start and end date that should be displayed

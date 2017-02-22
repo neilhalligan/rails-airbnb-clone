@@ -1,5 +1,4 @@
 .banner {
-  color: white;
   text-align: center;
   height: 100vh;
   background-size: cover !important;
@@ -8,12 +7,19 @@
   justify-content: center;
 }
 .banner h1 {
-  font-size: 50px;
+  color: white;
+  font-size: 90px;
   font-weight: bold;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
 .banner p {
-  font-size: 25px;
-  font-weight: lighter;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
   margin-bottom: 50px;
+}
+
+.search-banner {
+  height: 45vh;
+  background-position: bottom;
 }

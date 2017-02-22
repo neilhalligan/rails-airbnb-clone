@@ -23,6 +23,9 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+gem 'attachinary', github: 'assembler/attachinary'
+
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
