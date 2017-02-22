@@ -1,3 +1,15 @@
+
+<%= @booking %>
+
+
+
+
+<%= simple_form_for [@booking, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %> <!-- or something to pick between 1-5  -->
+  <%= f.submit "post review", class: "btn btn-primary" %>
+<% end %>
+
 <h2>Booking Show</h2>
 <!-- FOR FRONT END use following variables:
     @owner = @booking.car.user
@@ -14,6 +26,7 @@ renter name: <%= @renter.name %>
 renter email: <%= @renter.email %>
 <br>
 car model: <%= @car.brand %> <%= @car.model %>
+
 
 <!--
 has a start and end date that should be displayed

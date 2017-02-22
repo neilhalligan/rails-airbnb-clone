@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   before_action :set_car, only: [:create, :destroy]
   before_action :authenticate_user!, only: [ :create ]
   def show
+    @review = Review.new
     @owner = @booking.car.user
     @renter = @booking.user
     @car = @booking.car
@@ -39,7 +40,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to car_path(@car)  # TODO s/b dashboard
+    redirect_to dashboard_path
   end
 
   private
