@@ -1,36 +1,42 @@
-<!-- current_user
-@bookings = current_user.bookings
-    @cars = current_user.cars
-    @bookings.each.car
-    @owner = user.bookings.car.user -->
-
-<%= current_user.email %>
-
-
-your cars
-<ul>
-    <% @cars.each do |car| %>
-      <li><%= car.brand %> <%= car.model %></li>
-    <% end %>
-</ul>
-
-your rentals
-<ul>
-    <% @bookings.each do |booking| %>
-      <li><%= booking.car.brand %> <%= booking.car.model %></li>
-    <% end %>
-</ul>
-
-your bookings
-<ul>
-    <% @bookings.each do |booking| %>
-      <li>
-        owner email <%= booking.user.email %>
-        <br>
-        owner name<%= booking.user.name %>
-        <br>
-        owner car <%= booking.car.model %> <%= booking.car.brand %>
-      </li>
-    <% end %>
-</ul>
-
+<br>
+<div>
+  <%= image_tag avatar_url, class: "avatar avatar-dash" %>
+</div>
+<div class="container dash-content padded">
+  <hr>
+  <h3>Your Cars</h3>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <ul>
+        <% @cars.each do |car| %>
+          <li><%= link_to "#{car.brand} #{car.model}", car_path(car) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <hr>
+  <h3>Your Bookings History</h3>
+  <hr>
+  <% @bookings.each do |booking| %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <ul>
+        <li>Car: <%= link_to "#{booking.car.brand} #{booking.car.model}", car_path(booking.car) %></li>
+        <li>Owner name: <%= booking.car.user.name %></li>
+        <li>Owner email: <%= link_to booking.car.user.email, user_path(booking.car.user) %></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= car_image_url?(booking.car) %>');">
+          <div class="card-location"><%= "booking.car.location" %>
+          </div>
+          <div class="card-description">
+            <h2><%= booking.car.brand %> <%= booking.car.model %></h2>
+          </div>
+          <%= link_to "", car_path(booking.car), class: "card-link" %>
+        </div>
+    </div>
+  </div>
+  <% end %>
+</div>
