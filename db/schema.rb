@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170221154448) do
 
   # These are extensions that must be enabled in order to support this database
@@ -50,6 +51,9 @@ ActiveRecord::Schema.define(version: 20170221154448) do
     t.integer  "user_id"
     t.text     "description"
     t.string   "car_image"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "location"
     t.index ["user_id"], name: "index_cars_on_user_id", using: :btree
   end
 
