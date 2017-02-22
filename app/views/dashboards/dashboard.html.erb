@@ -1,10 +1,9 @@
-<!-- current_user
-@bookings = current_user.bookings
-    @cars = current_user.cars
-    @bookings.each.car -->
+<!-- Car.where(user_id: current_user.id) -->
 
 <%= current_user.email %>
-
+<%= current_user.cars %>
+<%= @cars %>
+<br>
 
 your cars
 <ul>
@@ -12,6 +11,8 @@ your cars
       <li><%= car.brand %> <%= car.model %></li>
     <% end %>
 </ul>
+<br>
+
 
 your rentals
 <ul>
@@ -19,6 +20,7 @@ your rentals
       <li><%= booking.car.brand %> <%= booking.car.model %></li>
     <% end %>
 </ul>
+<br>
 
 your bookings
 <ul>
