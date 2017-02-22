@@ -5,23 +5,27 @@ class CarsController < ApplicationController
   def search
     @q = "%#{params[:query]}%"
     @cars = Car.where("brand LIKE ? or description LIKE ? or model LIKE ?", @q, @q, @q)
-    render :search
+    # change below to reject
+    # @cars = Car.where.not(latitude: nil, longitude: nil) if put map on index
+    @hash = Gmaps4rails.build_markers(@cars) do |car, marker|
+      marker.lat car.latitude
+      marker.lng car.longitude
+    end
+    # marker.infowindow render_to_string(partial: "/cars/map_box", locals: { car: car })
+    # when working, test with and without render
+    # render :search
   end
 
   def index
     @cars = Car.all
-    # only select cars with markers
-    # @cars = Car.where.not(latitude: nil, longitude: nil) if put map on index
-    @hash = Gmaps4rails.build_markers(@cars) do |car, marker|
-    marker.lat car.latitude
-    marker.lng car.longitude
-    # marker.infowindow render_to_string(partial: "/cars/map_box", locals: { car: car })
-    end
   end
 
   def show
     @booking = Booking.new
-    @car_coordinates = { lat: @car.latitude, lng: @car.longitude }
+
+    # @hash = Gmaps4rails.build_markers( lat: @car.latitude, lng: @car.longitude )
+    # car_coordinates(@car)
+
   end
 
   def new
@@ -58,6 +62,11 @@ class CarsController < ApplicationController
   end
 
   private
+
+  def car_coordinates(car)
+    # @car_coordinates = # not needed return
+    { lat: @car.latitude, lng: @car.longitude }
+  end
 
   def set_car
     @car = Car.find(params[:id])
