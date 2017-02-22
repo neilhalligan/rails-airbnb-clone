@@ -43,7 +43,23 @@
         </div>
         <hr>
       </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+        <h2>Reviews</h2>
+          <% @car.bookings.each do |booking| %>
+            <% booking.reviews.each do |review| %>
+            <ul>
+                <li>Rating:<%= review.rating %></li>
+                <li>Comments:<%= review.content %></li>
+                <li>Renter:<%= booking.user.email %></li>
+            </ul>
+            <hr>
+            <% end %>
+          <% end %>
+      </div>
     </div>
+  </div>
     <div class="row padded">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
         <h1>New Booking</h1>
