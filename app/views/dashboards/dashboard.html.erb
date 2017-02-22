@@ -3,22 +3,33 @@
     @cars = current_user.cars
     @bookings.each.car -->
 
-    Hi <% current_user %>
+<%= current_user.email %>
 
-    your cars <% @cars.each do |car| %>
-    <%= car.brand%>
-    <%= car.model%>
-    <% end %>
 
-    your rental cars <% @bookings.each do |booking| %>
-    <%= booking.car.brand%>
-    <%= booking.car.model%>
+your cars
+<ul>
+    <% @cars.each do |car| %>
+      <li><%= car.brand %> <%= car.model %></li>
     <% end %>
+</ul>
 
-    your bookings <% @bookings.each do |booking| %>
-    owner email <%= booking.user.email%>
-    <br>
-    owner name<%= booking.user.name%>
-    <br>
-    owner car <%= booking.car.model%> <%= booking.car.brand%>
+your rentals
+<ul>
+    <% @bookings.each do |booking| %>
+      <li><%= booking.car.brand %> <%= booking.car.model %></li>
     <% end %>
+</ul>
+
+your bookings
+<ul>
+    <% @bookings.each do |booking| %>
+      <li>
+        owner email <%= booking.user.email %>
+        <br>
+        owner name<%= booking.user.name %>
+        <br>
+        owner car <%= booking.car.model %> <%= booking.car.brand %>
+      </li>
+    <% end %>
+</ul>
+

@@ -12,7 +12,7 @@ class DashboardsController < ApplicationController
     @cars = current_user.cars
     @owners = []
     current_user.bookings.each do |booking|
-      @owners << booking.car.user
+      @owners << booking.car.user # consider deleting
     end
   end
 end

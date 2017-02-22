@@ -3,6 +3,9 @@
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
           <div class="text-center">
             <h1><%= @car.brand %> <%= @car.model %></h1>
+            <!-- calls helper method to assign photo if missing -->
+            <%= cl_image_tag car_image?, width: 600, height: 400, crop: :fill %>
+
             <p> @car.location </p>
             <i class="fa fa-star" style="color: #ffb400"></i>
             <i class="fa fa-star" style="color: #ffb400"></i>
@@ -41,45 +44,10 @@
         <hr>
       </div>
     </div>
-    <div class="row padded">
-      <div class="col-xs-12 col-sm-4 col-sm-offset-4">
-        <form action="#" >
-          <h4>Book this car</h3>
-          <div class="form-group">
-            <div class="row">
-              <div class="col-xs-6">
-                <input type="text" class="form-control" placeholder="rental date" id="checkin">
-              </div>
-              <div class="col-xs-6">
-                <input type="text" class="form-control" placeholder="return date">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <select name="" id="passengers" class="form-control">
-              <option value="1">1 passenger</option>
-              <option value="2">2 passengers</option>
-              <option value="3">none</option>
-            </select>
-          </div>
-          <input type="submit" class="btn btn-danger" value="Book it" style="width: 100%">
-        </form>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <h1>New Booking</h1>
+        <%= render 'booking_form' %>
       </div>
     </div>
-  </div>
-
-<%= @car.brand %>
-<%= @car.model %>
-<%= @car.description %>
-<%= @car.user.name %>
-
-<!-- link_to "Owner profile", user_path(@car.user ) -->
-
-<%= link_to "Delete car", car_path(@car), method: :delete %>
-
-<%= simple_form_for [@car, @booking] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.submit "Book your ride" %>
-<% end %>
-
+</div>
