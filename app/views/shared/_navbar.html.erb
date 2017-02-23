@@ -14,7 +14,7 @@
     <div class="navbar-wagon-item">
       <div class="dropdown">
         <!-- facebook avatar SHOULD USE A HELPER FOR THIS-->
-        <%= image_tag avatar_url, class: "avatar avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <%= image_tag avatar_url(current_user), class: "avatar avatar-large dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li><%= link_to "Dashboard", dashboard_path %></li>
           <li><%= link_to "Home", "/" %></li>
