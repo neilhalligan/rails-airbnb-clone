@@ -19,6 +19,8 @@ class BookingsController < ApplicationController
   end
 
   def create
+    booking_params[:start_date] = Date.parse(booking_params[:start_date])
+    booking_params[:end_date] = Date.parse(booking_params[:end_date])
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.car = @car
