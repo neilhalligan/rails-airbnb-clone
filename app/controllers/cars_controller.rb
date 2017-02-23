@@ -3,8 +3,15 @@ class CarsController < ApplicationController
   before_action :authenticate_user!, except: [ :index , :show, :search ]
 
   def search
-    @q = "%#{params[:query]}%"
-    @cars = Car.where("brand LIKE ? or description LIKE ? or model LIKE ?", @q, @q, @q)
+    @q = "#{params[:query]}"
+    # params[:entry].match(/(http|www|com|abc|def)/i)
+
+    @cars = []
+    @q.split.each do |q|
+      q.insert(-1,"%").insert(0,"%")
+      @cars += Car.where("brand ILIKE ? or description ILIKE ? or model ILIKE ?", q, q, q)
+      @cars.uniq!
+    end
     @hash = Gmaps4rails.build_markers(@cars) do |car, marker|
       marker.lat car.latitude
       marker.lng car.longitude
