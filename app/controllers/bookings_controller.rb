@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.car = @car
     @booking.pending = true
+    @hash = cars_location_marker([@car])
     if @booking.save
       redirect_to dashboard_path
     else
@@ -44,6 +45,13 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def cars_location_marker(cars)
+      Gmaps4rails.build_markers(cars) do |car, marker|
+      marker.lat car.latitude
+      marker.lng car.longitude
+    end
+  end
 
   def set_booking
     @booking = Booking.find(params[:id])

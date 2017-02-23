@@ -26,6 +26,7 @@ class CarsController < ApplicationController
     @booking = Booking.new
     @cars = [@car]
     @hash = cars_location_marker(@cars)
+    # raise
   end
 
   def new
@@ -64,7 +65,7 @@ class CarsController < ApplicationController
   private
 
   def cars_location_marker(cars)
-      Gmaps4rails.build_markers(@cars) do |car, marker|
+      Gmaps4rails.build_markers(cars) do |car, marker|
       marker.lat car.latitude
       marker.lng car.longitude
     end

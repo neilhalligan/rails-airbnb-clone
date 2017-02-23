@@ -84,11 +84,14 @@
       </div>
     </div>
   </div>
-
-    <div class="row padded">
-      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-        <h1>New Booking</h1>
-        <%= render 'booking_form' %>
-      </div>
+  <div class="row padded">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <h1>New Booking</h1>
+      <%= simple_form_for [@car, @booking] do |f| %>
+        <%= f.input :start_date %>
+        <%= f.input :end_date %>
+        <%= f.submit "Book your ride", class: "btn btn-primary" %>
+      <% end %>
     </div>
+  </div>
 </div>
