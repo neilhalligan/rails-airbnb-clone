@@ -44,6 +44,11 @@
         <hr>
       </div>
 
+  <% if current_user == @car.user %>
+    <%= link_to "Edit car", edit_car_path(@car), { class: "btn btn-lg btn-primary" } %>
+
+  <% else %>
+
     <div class="row">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
         <h2>Reviews</h2>
@@ -66,4 +71,5 @@
         <%= render 'booking_form' %>
       </div>
     </div>
+    <% end %>
 </div>
