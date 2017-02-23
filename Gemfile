@@ -9,7 +9,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'redis'
 gem 'devise'
 gem 'omniauth-facebook'
-gem "coffee-rails"
 gem "geocoder"
 gem "gmaps4rails"
 
@@ -29,8 +28,6 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
-
-gem 'attachinary', github: 'assembler/attachinary'
 
 
 group :development, :test do
