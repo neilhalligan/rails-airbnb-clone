@@ -3,7 +3,8 @@
         <h1>Welcome to Classic Cars</h1>
         <%= form_tag search_cars_path do %>
         <form action="#" class="form-inline">
-          <input type="text" name="query" class="input-lg" placeholder="search something">
+          <input type="text" name="location" class="input-lg" placeholder="Search city, address">
+          <input type="text" name="query" class="input-lg" placeholder="Search car model, brand">
           <input type="submit" class="btn btn-primary btn-lg" value="Search">
         </form>
         <%end%>
