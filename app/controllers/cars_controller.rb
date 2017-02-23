@@ -4,31 +4,28 @@ class CarsController < ApplicationController
 
   def search
     @q = "#{params[:query]}"
+    @l = "#{params[:location]}"
     # params[:entry].match(/(http|www|com|abc|def)/i)
 
     @cars = []
+    @cars += Car.near(@l, 10)
     @q.split.each do |q|
       q.insert(-1,"%").insert(0,"%")
       @cars += Car.where("brand ILIKE ? or description ILIKE ? or model ILIKE ?", q, q, q)
       @cars.uniq!
     end
-    @hash = Gmaps4rails.build_markers(@cars) do |car, marker|
-      marker.lat car.latitude
-      marker.lng car.longitude
-    end
+    @hash = cars_location_marker(@cars)
     render :search
   end
 
   def index
     @cars = Car.all
-    # only select cars with markers
-    # @cars = Car.where.not(latitude: nil, longitude: nil) if put map on index
-    # marker.infowindow render_to_string(partial: "/cars/map_box", locals: { car: car })
   end
 
   def show
     @booking = Booking.new
-    @car_coordinates = { lat: @car.latitude, lng: @car.longitude }
+    @cars = [@car]
+    @hash = cars_location_marker(@cars)
   end
 
   def new
@@ -66,11 +63,18 @@ class CarsController < ApplicationController
 
   private
 
+  def cars_location_marker(cars)
+      Gmaps4rails.build_markers(@cars) do |car, marker|
+      marker.lat car.latitude
+      marker.lng car.longitude
+    end
+  end
+
   def set_car
     @car = Car.find(params[:id])
   end
 
   def car_params
-    params.require(:car).permit(:brand, :model, :description, :car_image)
+    params.require(:car).permit(:brand, :model, :description, :car_image, :location)
   end
 end

@@ -6,7 +6,7 @@
             <!-- calls helper method to assign photo if missing -->
             <%= cl_image_tag car_image?, width: 600, height: 400, crop: :fill %>
 
-            <p> @car.location </p>
+            <p> <%= @car.location %></p>
             <i class="fa fa-star" style="color: #ffb400"></i>
             <i class="fa fa-star" style="color: #ffb400"></i>
             <i class="fa fa-star" style="color: #ffb400"></i>
@@ -21,6 +21,10 @@
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
+        <% if current_user == @car.user %>
+          <%= link_to "Edit car description", edit_car_path(@car), class: "btn btn-primary" %>
+          <%= link_to "Delete listing", car_path(@car), { method: :delete, class: "btn btn-danger" } %>
+        <%end%>
         <hr>
         <div class="row" id="flat-data">
           <div class="col-xs-12 col-sm-2">
@@ -30,19 +34,39 @@
             <ul class="list-unstyled">
               <li>Owner: <strong><%= @car.user.email %></strong></li>
               <li>Model: <strong><%= @car.brand %> <%= @car.model %></strong></li>
-              <li>Year: <strong> @car.year </strong></li>
+              <li>Year: <strong>  @car.year </strong></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-4">
             <ul class="list-unstyled">
               <li>Condition: <strong><%= @car.description %></strong></li>
-              <li>Location: <strong> @car.location </strong></li>
+              <li>Location: <strong><%= @car.location %></strong></li>
               <li>Rates: <strong> @car.price </strong></li>
             </ul>
           </div>
         </div>
         <hr>
       </div>
+
+      <div id="map" style="width: 100%; height: 600px;"></div>
+
+      <% content_for(:after_js) do %>
+        <script>
+          $(document).ready(function() {
+            var handler = Gmaps.build('Google');
+            handler.buildMap({ internal: { id: 'map' } }, function() {
+              markers = handler.addMarkers(<%= raw @hash.to_json %>);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+              if (markers.length == 0) {
+                handler.getMap().setZoom(2);
+              } else if (markers.length == 1) {
+                handler.getMap().setZoom(14);
+              }
+            });
+          });
+        </script>
+      <%end%>
 
     <div class="row">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
@@ -60,6 +84,7 @@
       </div>
     </div>
   </div>
+
     <div class="row padded">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
         <h1>New Booking</h1>
