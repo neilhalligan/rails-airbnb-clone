@@ -31,18 +31,15 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    @booking = Booking.update(booking_params)
-    if @booking.save
-      redirect_to booking_path(@booking)
-    else
-      render :edit # TODO confirm this works
-    end
+
   end
 
   def update
-    if params[:pending] == "false"
+    if @booking.pending
       @booking.pending = false
       @booking.save
+      redirect_to booking_path(@booking)
+      # this redirects to the booking show page, nonetheless the btn disappearance is not dynamic
       return
     end
   end
