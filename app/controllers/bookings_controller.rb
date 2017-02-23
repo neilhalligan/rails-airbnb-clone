@@ -1,7 +1,12 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:show, :edit, :update, :destroy, :activate]
   before_action :set_car, only: [:create, :destroy]
   before_action :authenticate_user!, only: [ :create ]
+
+  def activate
+    @booking.pending = false
+  end
+
   def show
     @review = Review.new
     @owner = @booking.car.user
@@ -35,7 +40,11 @@ class BookingsController < ApplicationController
   end
 
   def update
-
+    if params[:pending] == "false"
+      @booking.pending = false
+      @booking.save
+      return
+    end
   end
 
   def destroy
