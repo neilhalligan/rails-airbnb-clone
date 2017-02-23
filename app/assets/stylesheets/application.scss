@@ -29,5 +29,10 @@
 }
 
 body {
-    background: white;
+  background: white;
+}
+.wrapper {
+    background-size: cover !important;
+  background-position: 50% 50%;
+  background-image: url("http://kimdanielson.com/wp-content/uploads/2015/07/Dollarphotoclub_72395359.jpg");
 }

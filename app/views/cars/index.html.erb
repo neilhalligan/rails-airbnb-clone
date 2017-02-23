@@ -6,13 +6,18 @@
     <% @cars.each do |car| %>
       <div class="col-xs-12 col-sm-4">
         <!-- calls helper method, returns url -->
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= car_image_url?(car) %>');">
-          <div class="card-location"><%= "car.location" %>
+
+        <div class="card">
+          <div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= car_image_url?(car) %>');">
+              <div class="card-location"><%= car.location %>
+              </div>
           </div>
-          <div class="card-description">
-            <h2><%= car.brand %> <%= car.model %></h2>
-          </div>
-          <%= link_to "", car_path(car), class: "card-link" %>
+
+            <div class="card-footer">
+              <p><%= car.brand %> <%= car.model %> | <%= car.location %></p>
+            </div>
+            <%= link_to "", car_path(car), class: "card-link" %>
+
         </div>
       </div>
     <%end%>
