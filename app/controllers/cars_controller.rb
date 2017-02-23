@@ -5,8 +5,6 @@ class CarsController < ApplicationController
   def search
     @q = "#{params[:query]}"
     @l = "#{params[:location]}"
-    # params[:entry].match(/(http|www|com|abc|def)/i)
-
     @cars = []
     @cars += Car.near(@l, 10)
     @q.split.each do |q|
@@ -35,8 +33,6 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user = current_user
-    # TODO add other params (user)
-    # TODO add check for photo (as default value is nil with cloudinary)
     if @car.save
       redirect_to car_path(@car)
     else
@@ -52,19 +48,19 @@ class CarsController < ApplicationController
     if @car.save
       redirect_to car_path(@car)
     else
-      render :edit # TODO confirm this works
+      render :edit
     end
   end
 
   def destroy
-    @car.destroy     # TODO set validations on booking side
-    redirect_to cars_path  # TODO s/b dashboard
+    @car.destroy
+    redirect_to dashboard_path
   end
 
   private
 
   def cars_location_marker(cars)
-      Gmaps4rails.build_markers(@cars) do |car, marker|
+      Gmaps4rails.build_markers(cars) do |car, marker|
       marker.lat car.latitude
       marker.lng car.longitude
     end
