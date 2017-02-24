@@ -5,8 +5,8 @@
           <div class="text-center">
             <h1><%= @car.brand %> <%= @car.model %></h1>
             <!-- calls helper method to assign photo if missing -->
+
             <%= cl_image_tag car_image?, class: "avatar-car", width: 500 %>
-<!-- width: 600, height: 400, crop: :fill  -->
             <p><%= @car.location %></p>
 
             <i class="fa fa-star" style="color: #ffb400"></i>
@@ -73,6 +73,7 @@
     <% if !@car.reviews.empty? %>
     <div class="row">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
         <h2>
           <%= pluralize @car.reviews.size, "review" %>
         </h2>
