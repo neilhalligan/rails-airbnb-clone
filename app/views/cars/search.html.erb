@@ -1,20 +1,43 @@
-<div class="container text-center">
-  <h1>Search Results</h1>
+<h1>Search Results</h1>
+<div class="map-body">
   <div class="row">
-    <% @cars.each do |car| %>
-    <div class="col-xs-12 col-sm-4">
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('http://media1.santabanta.com/full1/Cars/Vintage%20and%20Classic%20Cars/vintage-and-classic-cars-56a.jpg');">
-        <div class="card-location"> @car.location
-        </div>
-        <div class="card-description">
-          <h2><%= car.brand %> <%= car.model %></h2>
-        </div>
-        <%= link_to "", car_path(car), class: "card-link" %>
+    <div class="col-xs-12 col-sm-5">
+      <div id="map" class="map-fixed" style="margin: 0;
+      padding: 0; width: 500px;">
+      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <% @cars.each do |car| %>
+        <div class="product">
+          <div class='product-upvote'>
+            <div class="product-arrow"></div>
+            <div class='product-count'>95</div>
+          </div>
+      <%= link_to "", car_path(car), class: "card-link" %>
+      <%= image_tag car_image_url?(car), {class: "product-image", style: "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2));"}%>
+
+
+      <div class='product-body'>
+        <h3><%= car.brand %> <%= car.model %></h3>
+        <p><%= car.location %></p>
+      </div>
+      <div class='product-body'>
+        <%= image_tag avatar_url(car.user), class: "avatar-search" %>
+        <%= car.user.name %>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><a href=""><i class="fa fa-heart"></i></a></li>
+          <li><a href=""><i class="fa fa-share"></i></a></li>
+          <li><a href=""><i class="fa fa-star"></i></a></li>
+        </ul>
       </div>
     </div>
     <%end%>
   </div>
-</div>
+  </div>
+  </div>s
+
+
 
 <div id="map" style="width: 100%; height: 600px;"></div>
 
@@ -34,4 +57,3 @@
       });
     });
   </script>
-<% end %>

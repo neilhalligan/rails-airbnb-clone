@@ -9,12 +9,15 @@ gem 'jbuilder', '~> 2.0'
 gem 'redis'
 gem 'devise'
 gem 'omniauth-facebook'
-gem "coffee-rails"
 gem "geocoder"
 gem "gmaps4rails"
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
+end
+
+source "https://rails-assets.org" do
+  gem 'rails-assets-bootstrap-datepicker'
 end
 
 gem 'cloudinary', '1.1.7'
@@ -29,8 +32,6 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
-
-gem 'attachinary', github: 'assembler/attachinary'
 
 
 group :development, :test do

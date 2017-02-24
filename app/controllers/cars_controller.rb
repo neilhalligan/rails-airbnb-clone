@@ -3,17 +3,18 @@ class CarsController < ApplicationController
   before_action :authenticate_user!, except: [ :index , :show, :search ]
 
   def search
-    @q = "%#{params[:query]}%"
-    @cars = Car.where("brand LIKE ? or description LIKE ? or model LIKE ?", @q, @q, @q)
-    # change below to reject
-    # @cars = Car.where.not(latitude: nil, longitude: nil) if put map on index
-    @hash = Gmaps4rails.build_markers(@cars) do |car, marker|
-      marker.lat car.latitude
-      marker.lng car.longitude
+
+    @q = "#{params[:query]}"
+    @l = "#{params[:location]}"
+    @cars = []
+    @cars += Car.near(@l, 10)
+    @q.split.each do |q|
+      q.insert(-1,"%").insert(0,"%")
+      @cars += Car.where("brand ILIKE ? or description ILIKE ? or model ILIKE ?", q, q, q)
+      @cars.uniq!
     end
-    # marker.infowindow render_to_string(partial: "/cars/map_box", locals: { car: car })
-    # when working, test with and without render
-    # render :search
+    @hash = cars_location_marker(@cars)
+    render :search
   end
 
   def index
@@ -23,9 +24,8 @@ class CarsController < ApplicationController
   def show
     @booking = Booking.new
 
-    # @hash = Gmaps4rails.build_markers( lat: @car.latitude, lng: @car.longitude )
-    # car_coordinates(@car)
-
+    @cars = [@car]
+    @hash = cars_location_marker(@cars)
   end
 
   def new
@@ -35,8 +35,6 @@ class CarsController < ApplicationController
   def create
     @car = Car.new(car_params)
     @car.user = current_user
-    # TODO add other params (user)
-    # TODO add check for photo (as default value is nil with cloudinary)
     if @car.save
       redirect_to car_path(@car)
     else
@@ -52,20 +50,23 @@ class CarsController < ApplicationController
     if @car.save
       redirect_to car_path(@car)
     else
-      render :edit # TODO confirm this works
+      render :edit
     end
   end
 
   def destroy
-    @car.destroy     # TODO set validations on booking side
-    redirect_to cars_path  # TODO s/b dashboard
+    @car.destroy
+    redirect_to dashboard_path
   end
 
   private
 
-  def car_coordinates(car)
-    # @car_coordinates = # not needed return
-    { lat: @car.latitude, lng: @car.longitude }
+
+  def cars_location_marker(cars)
+      Gmaps4rails.build_markers(cars) do |car, marker|
+      marker.lat car.latitude
+      marker.lng car.longitude
+    end
   end
 
   def set_car
@@ -73,6 +74,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:brand, :model, :description, :car_image)
+    params.require(:car).permit(:brand, :model, :description, :car_image, :location, :price)
   end
 end

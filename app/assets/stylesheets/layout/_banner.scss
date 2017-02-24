@@ -1,7 +1,8 @@
 .banner {
   text-align: center;
-  height: 100vh;
+  height: 45vh;
   background-size: cover !important;
+  background-position: 50% 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +20,4 @@
   margin-bottom: 50px;
 }
 
-.search-banner {
-  height: 45vh;
-  background-position: bottom;
-}
+

@@ -6,16 +6,17 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:facebook]
 
   has_many :cars, dependent: :destroy
-  # has_many :cars, through: :bookings, dependent: :destroy
   has_many :bookings, dependent: :destroy
 
-
   has_attachment :user_image
-  # validates :name, presence: true, uniqueness: true
+
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
-    user_params.merge! auth.info.slice(:email, :first_name, :last_name)
+    fb_names =  auth.info.slice(:first_name, :last_name)
+    our_name = { name: fb_names.values.join(" ") }
+    user_params.merge! auth.info.slice(:email)
+    user_params.merge! our_name
     user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
