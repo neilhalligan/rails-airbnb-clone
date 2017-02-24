@@ -6,13 +6,22 @@ class CarsController < ApplicationController
 
     @q = "#{params[:query]}"
     @l = "#{params[:location]}"
-    @cars = []
-    @cars += Car.near(@l, 10)
+    @cars_l = []
+    @cars_q = []
+    @cars_l += Car.near(@l, 10)
     @q.split.each do |q|
       q.insert(-1,"%").insert(0,"%")
-      @cars += Car.where("brand ILIKE ? or description ILIKE ? or model ILIKE ?", q, q, q)
-      @cars.uniq!
+      @cars_q << Car.where("brand ILIKE ? or description ILIKE ? or model ILIKE ?", q, q, q).to_a
     end
+    @cars_q.uniq!
+    if @cars_l.blank?
+      @cars = @cars_q
+    elsif @cars_q.blank?
+      @cars = @cars_l
+    else
+      @cars = @cars_l.select { |elem| !@cars_q.include?(elem) }
+    end
+    @cars.flatten!
     @hash = cars_location_marker(@cars)
     render :search
   end
