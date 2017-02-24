@@ -22,8 +22,9 @@ class CarsController < ApplicationController
   end
 
   def show
-    @booking = Booking.new
-
+    @booking_review = Booking.where(user: current_user, car: @car)[0]
+    @booking_blank = Booking.new
+    @review = Review.new
     @cars = [@car]
     @hash = cars_location_marker(@cars)
   end
@@ -36,7 +37,7 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.user = current_user
     if @car.save
-      redirect_to car_path(@car)
+      redirect_to dashboard_path
     else
       render :new
     end

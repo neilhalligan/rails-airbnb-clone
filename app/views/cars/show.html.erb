@@ -1,12 +1,12 @@
-<div class="wrapper">
+<div class="text-center">
   <div class="container">
     <div class="row padded">
       <div class="col-xs-12 col-sm-8 col-sm-offset-2">
           <div class="text-center">
             <h1><%= @car.brand %> <%= @car.model %></h1>
             <!-- calls helper method to assign photo if missing -->
-            <%= cl_image_tag car_image?, width: 600, height: 400, crop: :fill %>
-
+            <%= cl_image_tag car_image?, class: "avatar-car", width: 500 %>
+<!-- width: 600, height: 400, crop: :fill  -->
             <p><%= @car.location %></p>
 
             <i class="fa fa-star" style="color: #ffb400"></i>
@@ -51,8 +51,8 @@
       </div>
 
 
-      <div id="map" style="width: 100%; height: 600px;"></div>
-
+      <div id="map" style="width: 50%; height: 300px;"></div>
+<hr>
       <% content_for(:after_js) do %>
         <script>
           $(document).ready(function() {
@@ -73,29 +73,40 @@
     <% if !@car.reviews.empty? %>
     <div class="row">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-        <h2>Reviews</h2>
-          <% @car.bookings.each do |booking| %>
-
-            <% booking.reviews.each do |review| %>
-              <ul>
-              <%= render 'reviews/show', review: review %>
-                <li>Rating:<%= review.rating %></li>
-                <li>Comments:<%= review.content %></li>
-                <li>Renter:<%= booking.user.email %></li>
-              </ul>
-              <br>
+        <h2>
+          <%= pluralize @car.reviews.size, "review" %>
+        </h2>
+        <div id="reviews">
+          <% if @car.reviews.blank? %>
+            <p>Be first to leave a review for the <%= @car.brand%> <%=@car.model%></p>
+          <%end%>
+          <%if @booking_review.nil?%>
+            <p>You cannot review a car you have not yet rented</p>
+            <br>
+          <%end%>
+          <%if !@car.reviews.blank?%>
+            <% @car.reviews.each do |review| %>
+                <%= render 'reviews/show', review: review %>
             <%end%>
           <%end%>
         </div>
+
+
+        <% if @booking_review%>
+          <%= render 'reviews/form_review', booking: @booking_review, review: @review %>
+        <%end%>
+
+      </div>
     </div>
   </div>
-  <% end %>
+
+  <hr>
 
   <% if @car.user != current_user %>
     <div class="row padded">
     <div class="col-xs-4 col-sm-3 col-sm-offset-4">
       <h1>New Booking</h1>
-        <%= simple_form_for [@car, @booking] do |f| %>
+        <%= simple_form_for [@car, @booking_blank] do |f| %>
           <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}  %>
           <%= f.input :end_date, as: :string, input_html: {class: "datepicker"}  %>
           <%= f.submit "Book your ride", class: "btn btn-primary" %>

@@ -3,6 +3,7 @@ class Booking < ApplicationRecord
   belongs_to :car
   has_one :review
 
+  # validates :user, uniqueness: { scope: :car }
   validates :start_date, presence: true
   validates :end_date, presence: true
   validate :end_date_after_start_date
