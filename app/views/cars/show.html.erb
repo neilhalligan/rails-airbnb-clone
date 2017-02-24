@@ -73,20 +73,22 @@
 
     <div class="row">
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-        <h2>Reviews</h2>
-          <% @car.bookings.each do |booking| %>
-
-            <% booking.reviews.each do |review| %>
+        <h2>
+          <%= pluralize @car.reviews.size, "review" %>
+        </h2>
+        <div id="reviews">
+          <% if @car.reviews.blank? %>
+            <p>Be first to leave a review for <%@car.brand%> <%@car.model%></p>
+          <%else%>
+            <% @car.reviews.each do |review| %>
               <ul>
-              <%= render 'reviews/show', review: review %>
-                <li>Rating:<%= review.rating %></li>
-                <li>Comments:<%= review.content %></li>
-                <li>Renter:<%= booking.user.email %></li>
+                <%= render 'reviews/show', review: review %>
               </ul>
               <br>
             <%end%>
           <%end%>
         </div>
+      </div>
     </div>
   </div>
   <% if @car.user != current_user %>
