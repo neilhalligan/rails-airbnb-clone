@@ -27,4 +27,12 @@
 <div class="text-center padded">
   <%= link_to "Add new car", new_car_path, class: "btn btn-lg btn-success" %>
 </div>
+<script>
+  var input = document.getElementById('searchTextField');
+  var options = {
+    bounds: defaultBounds,
+    types: ['establishment']
+  };
 
+  autocomplete = new google.maps.places.Autocomplete(input, options);
+</script>
