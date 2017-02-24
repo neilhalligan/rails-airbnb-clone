@@ -1,5 +1,5 @@
 class Car < ApplicationRecord
-  has_attachment :car_image
+  has_attachments :car_image, maximum: 5
   belongs_to :user
   has_many :users, through: :bookings
   has_many :bookings, dependent: :destroy

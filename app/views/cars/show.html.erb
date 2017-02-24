@@ -5,7 +5,7 @@
           <div class="text-center">
             <h1><%= @car.brand %> <%= @car.model %></h1>
             <!-- calls helper method to assign photo if missing -->
-            <%= cl_image_tag car_image?, width: 600, height: 400, crop: :fill %>
+            <%= cl_image_tag @car.car_image.first.path, width: 600, height: 400, crop: :fill %>
 
             <p><%= @car.location %></p>
 
@@ -75,7 +75,6 @@
       <div class="col-xs-12 col-sm-10 col-sm-offset-1">
         <h2>Reviews</h2>
           <% @car.bookings.each do |booking| %>
-
             <% booking.reviews.each do |review| %>
               <ul>
               <%= render 'reviews/show', review: review %>
