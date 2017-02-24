@@ -7,3 +7,21 @@
   <%= f.input :car_image, as: :attachinary %>
   <%= f.submit :submit %>
 <% end %>
+
+<% content_for(:after_js) do %>
+
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_AUTOCOMPLETE_KEY']}&libraries=places"%>
+  <script>
+  var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(-33.8902, 151.1759),
+  new google.maps.LatLng(-33.8474, 151.2631));
+
+  var input = document.getElementById('car_location');
+  var options = {
+    bounds: defaultBounds,
+    types: ['establishment']
+  };
+
+  autocomplete = new google.maps.places.Autocomplete(input, options);
+  </script>
+<%end%>

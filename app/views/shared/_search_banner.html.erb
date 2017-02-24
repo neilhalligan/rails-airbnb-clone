@@ -1,12 +1,33 @@
     <div class="banner search-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('http://eskipaper.com/images/classic-car-interior-wallpaper-1.jpg');">
-      <div class="banner-content">
+      <div class="banner-content" >
+      <br>
         <h1>Classic Cars</h1>
+        <br><br><br>
         <%= form_tag search_cars_path do %>
-        <form action="#" class="form-inline">
-          <input type="text" name="location" class="input-sm" placeholder="Search city, address">
-          <input type="text" name="query" class="input-sm" placeholder="Search car model, brand">
-          <input type="submit" class="btn btn-primary btn-sm" value="Search">
+        <div class="row">
+        <form action="#" class="form-inline col-xs-12">
+          <input id="searchTextField" type="text" name="location" class="input-lg" placeholder="Search city, address">
+          <input type="text" name="query" class="input-lg" placeholder="Search car model, brand">
+          <input type="submit" class="btn btn-primary btn-lg" value="Search">
         </form>
+        </div>
         <%end%>
       </div>
     </div>
+<% content_for(:after_js) do %>
+
+    <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_API_AUTOCOMPLETE_KEY']}&libraries=places"%>
+  <script>
+  var defaultBounds = new google.maps.LatLngBounds(
+  new google.maps.LatLng(-33.8902, 151.1759),
+  new google.maps.LatLng(-33.8474, 151.2631));
+
+  var input = document.getElementById('searchTextField');
+  var options = {
+    bounds: defaultBounds,
+    types: ['establishment']
+  };
+
+  autocomplete = new google.maps.places.Autocomplete(input, options);
+  </script>
+<%end%>
