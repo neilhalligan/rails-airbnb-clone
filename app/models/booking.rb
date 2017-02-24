@@ -15,6 +15,7 @@ class Booking < ApplicationRecord
       errors.add(:start_date, "Start date must be after end date")
     end
   end
+
   def check_booking_date
     date_available = true
     self.car.bookings.each do |booking|
