@@ -7,6 +7,7 @@
 //= require underscore
 //= require gmaps/google
 //= require bootstrap-datepicker
+//= require jquery.slick
 //= require_tree .
 
 $(document).ready(function() {
@@ -14,5 +15,13 @@ $(document).ready(function() {
        autoclose: true,
     todayHighlight: true,
     format: 'dd/mm/yyyy'
-});
   });
+
+  $(".slickbox").slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    cssEase: 'linear'
+  });
+});

@@ -6,7 +6,14 @@
             <h1><%= @car.brand %> <%= @car.model %></h1>
             <!-- calls helper method to assign photo if missing -->
 
-            <%= cl_image_tag car_image?, class: "avatar-car", width: 500 %>
+            <div class="slickbox">
+              <% @car.car_image.each do |img| %>
+              <div><%= cl_image_tag img.path, class: "avatar-car", width: 500 %></div>
+            <% end %>
+            </div>
+
+
+
             <p><%= @car.location %></p>
 
             <i class="fa fa-star" style="color: #ffb400"></i>
@@ -36,7 +43,6 @@
             <ul class="list-unstyled">
               <li>Owner: <strong><%= @car.user.email %></strong></li>
               <li>Model: <strong><%= @car.brand %> <%= @car.model %></strong></li>
-              <li>Year: <strong>  @car.year </strong></li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-4">
@@ -108,8 +114,8 @@
     <div class="col-xs-4 col-sm-3 col-sm-offset-4">
       <h1>New Booking</h1>
         <%= simple_form_for [@car, @booking_blank] do |f| %>
-          <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}  %>
-          <%= f.input :end_date, as: :string, input_html: {class: "datepicker"}  %>
+          <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}, placeholder: "from"  %>
+          <%= f.input :end_date, as: :string, input_html: {class: "datepicker"}, placeholder: "to"  %>
           <%= f.submit "Book your ride", class: "btn btn-primary" %>
         <% end %>
       </div>
