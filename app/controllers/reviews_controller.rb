@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_booking
 
-
   def create
     @review = Review.new(review_params)
     @review.booking = @booking

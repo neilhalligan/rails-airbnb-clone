@@ -22,8 +22,9 @@ class CarsController < ApplicationController
   end
 
   def show
-    @booking = Booking.new
-
+    @booking_review = Booking.where(user: current_user, car: @car)[0]
+    @booking_blank = Booking.new
+    @review = Review.new
     @cars = [@car]
     @hash = cars_location_marker(@cars)
   end

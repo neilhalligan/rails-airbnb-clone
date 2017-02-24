@@ -87,6 +87,7 @@
               <br>
             <%end%>
           <%end%>
+          <%= render 'reviews/form', booking: @booking_review, review: @review %>
         </div>
       </div>
     </div>
@@ -95,7 +96,7 @@
     <div class="row padded">
     <div class="col-xs-4 col-sm-3 col-sm-offset-4">
       <h1>New Booking</h1>
-        <%= simple_form_for [@car, @booking] do |f| %>
+        <%= simple_form_for [@car, @booking_blank] do |f| %>
           <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}  %>
           <%= f.input :end_date, as: :string, input_html: {class: "datepicker"}  %>
           <%= f.submit "Book your ride", class: "btn btn-primary" %>
