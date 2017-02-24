@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :car
-  has_many :reviews
+  has_one :review
 
   # validates :user, uniqueness: { scope: :car }
   validates :start_date, presence: true
