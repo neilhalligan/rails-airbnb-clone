@@ -1,4 +1,5 @@
 module CarsHelper
+
   def car_image?
     if @car.car_image?
       @car.car_image.path

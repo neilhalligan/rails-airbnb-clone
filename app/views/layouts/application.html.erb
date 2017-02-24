@@ -14,6 +14,11 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer.html.erb' %>
+    
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
+
 
     <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>
 
@@ -23,5 +28,6 @@
     <%= javascript_include_tag "application" %>
     <%= cloudinary_js_config %>
     <%= yield(:after_js) %>
+    <%= cloudinary_js_config %>
   </body>
 </html>

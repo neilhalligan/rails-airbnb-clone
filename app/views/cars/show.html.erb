@@ -7,7 +7,8 @@
             <!-- calls helper method to assign photo if missing -->
             <%= cl_image_tag car_image?, width: 600, height: 400, crop: :fill %>
 
-            <p> <%= @car.location %></p>
+            <p><%= @car.location %></p>
+
             <i class="fa fa-star" style="color: #ffb400"></i>
             <i class="fa fa-star" style="color: #ffb400"></i>
             <i class="fa fa-star" style="color: #ffb400"></i>
@@ -106,3 +107,20 @@
   <% end %>
 </div>
 </div>
+<% content_for(:after_js) do %>
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  </script>
+<% end %>

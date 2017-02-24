@@ -3,6 +3,7 @@ class CarsController < ApplicationController
   before_action :authenticate_user!, except: [ :index , :show, :search ]
 
   def search
+
     @q = "#{params[:query]}"
     @l = "#{params[:location]}"
     @cars = []
@@ -22,6 +23,7 @@ class CarsController < ApplicationController
 
   def show
     @booking = Booking.new
+
     @cars = [@car]
     @hash = cars_location_marker(@cars)
   end
@@ -58,6 +60,7 @@ class CarsController < ApplicationController
   end
 
   private
+
 
   def cars_location_marker(cars)
       Gmaps4rails.build_markers(cars) do |car, marker|
