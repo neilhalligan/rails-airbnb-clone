@@ -1,36 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
 
-<%= @booking %>
-
-
-
-
-<%= simple_form_for [@booking, @review] do |f| %>
-  <%= f.input :content %>
-  <%= f.input :rating %> <!-- or something to pick between 1-5  -->
-  <%= f.submit "post review", class: "btn btn-primary" %>
-<% end %>
-
-<h2>Booking Show</h2>
-<!-- FOR FRONT END use following variables:
-    @owner = @booking.car.user
-    @renter = @booking.user
-    @car = @booking.car
-    @booking
- -->
-owner name: <%= @owner.name %>
-<br>
-owner email: <%= @owner.email %>
-<br>
-renter name: <%= @renter.name %>
-<br>
-renter email: <%= @renter.email %>
-<br>
-car model: <%= @car.model %> | car brand: <%= @car.brand %>
+      <h2> <%= @booking.car.brand %>  <%= @booking.car.model %></h2>
 
 
-<!--
-has a start and end date that should be displayed
-through it can access both user_customer information ex. @booking.user.user_image
-and the vintage car information ex. @booking.car.car_image
 
- -->
+
+      <% if current_user != @booking.car.user %>
+        <%= simple_form_for [@booking, @review] do |f| %>
+          <%= f.input :content %>
+          <%= f.input :rating %> <!-- or something to pick between 1-5  -->
+          <%= f.submit "post review", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+
+
+      <h2>Booking Show</h2>
+      <!-- FOR FRONT END use following variables:
+          @owner = @booking.car.user
+          @renter = @booking.user
+          @car = @booking.car
+          @booking
+       -->
+      owner name: <%= @owner.name %>
+      <br>
+      owner email: <%= @owner.email %>
+      <br>
+      renter name: <%= @renter.name %>
+      <br>
+      renter email: <%= @renter.email %>
+      <br>
+      car model: <%= @car.brand %> <%= @car.model %>
+      <br>
+      Start Date: <%= @booking.start_date %>
+      <br>
+      End Date: <%= @booking.end_date %>
+
+
+      <!--
+      has a start and end date that should be displayed
+      through it can access both user_customer information ex. @booking.user.user_image
+      and the vintage car information ex. @booking.car.car_image
+
+       -->
+    </div>
+  </div>
+</div>

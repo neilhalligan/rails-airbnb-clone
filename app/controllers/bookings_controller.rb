@@ -1,7 +1,12 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:show, :edit, :update, :destroy, :activate]
   before_action :set_car, only: [:create, :destroy]
   before_action :authenticate_user!, only: [ :create ]
+
+  def activate
+    @booking.pending = false
+  end
+
   def show
     @review = Review.new
     @owner = @booking.car.user
@@ -14,28 +19,32 @@ class BookingsController < ApplicationController
   end
 
   def create
+    booking_params[:start_date] = Date.parse(booking_params[:start_date])
+    booking_params[:end_date] = Date.parse(booking_params[:end_date])
     @booking = Booking.new(booking_params)
     @booking.user = current_user
     @booking.car = @car
     @booking.pending = true
+    @hash = cars_location_marker([@car])
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to dashboard_path
     else
       render "cars/show"
     end
   end
 
   def edit
-    @booking = Booking.update(booking_params)
-    if @booking.save
-      redirect_to booking_path(@booking)
-    else
-      render :edit # TODO confirm this works
-    end
+
   end
 
   def update
-
+    if @booking.pending
+      @booking.pending = false
+      @booking.save
+      redirect_to booking_path(@booking)
+      # this redirects to the booking show page, nonetheless the btn disappearance is not dynamic
+      return
+    end
   end
 
   def destroy
@@ -44,6 +53,13 @@ class BookingsController < ApplicationController
   end
 
   private
+
+  def cars_location_marker(cars)
+      Gmaps4rails.build_markers(cars) do |car, marker|
+      marker.lat car.latitude
+      marker.lng car.longitude
+    end
+  end
 
   def set_booking
     @booking = Booking.find(params[:id])

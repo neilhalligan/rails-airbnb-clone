@@ -1,7 +1,7 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background-image: url("http://1.bp.blogspot.com/-IijXIqrAKw0/UtJt2MZPk_I/AAAAAAAAGdw/ZP0t3Ohs4rc/s1600/black-graphics-BG-textured-HD-wallpapers-designs-for+mobile-desktop-download.jpg");
+  background: black;
   background-size: 45%;
   transition: all 0.3s ease;
   display: flex;
@@ -28,7 +28,7 @@
   position: fixed;
   left: 0px;
   top: 0px;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
 }
 
@@ -42,7 +42,7 @@
 
 /* Navbar logo */
 .navbar-wagon-brand img {
-  width: 70px;
+  width: 50px;
 }
 
 /* Navbar right section (with form, links, button) */

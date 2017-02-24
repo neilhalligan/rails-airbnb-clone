@@ -1,9 +1,10 @@
-    <div class="banner search-banner" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('https://res.cloudinary.com/ders-cloud/image/upload/v1487609876/ryan-hefner-190737_dbdfmh.jpg');">
+    <div class="banner search-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('http://eskipaper.com/images/classic-car-interior-wallpaper-1.jpg');">
       <div class="banner-content">
-        <h1>Welcome to Classic Cars</h1>
+        <h1>Classic Cars</h1>
         <%= form_tag search_cars_path do %>
         <form action="#" class="form-inline">
-          <input type="text" name="query" class="input-lg" placeholder="search something">
+          <input type="text" name="location" class="input-lg" placeholder="Search city, address">
+          <input type="text" name="query" class="input-lg" placeholder="Search car model, brand">
           <input type="submit" class="btn btn-primary btn-lg" value="Search">
         </form>
         <%end%>

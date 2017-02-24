@@ -1,9 +1,9 @@
 module ApplicationHelper
-  def avatar_url
-    if user_signed_in? && current_user.facebook_picture_url
-      current_user.facebook_picture_url
+  def avatar_url(user)
+    if user && user.facebook_picture_url
+      user.facebook_picture_url
     else
-      "http://placehold.it/30x30"
+      "https://wiki.cam.ac.uk/wiki/ajmorris/img_auth.php/4/41/Unknown_user.png"
     end
   end
 end

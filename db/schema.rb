@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170222081158) do
+=======
+ActiveRecord::Schema.define(version: 20170223113714) do
+>>>>>>> 16c9c371f3dae2f728fd7d78a1fec325fa771176
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170222081158) do
     t.float    "latitude"
     t.float    "longitude"
     t.string   "location"
+    t.integer  "price"
     t.index ["user_id"], name: "index_cars_on_user_id", using: :btree
   end
 
