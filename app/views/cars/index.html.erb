@@ -3,24 +3,24 @@
 <div class="container text-center">
   <h1>Car Listings</h1>
   <div class="row">
-    <% @cars.each do |car| %>
-      <div class="col-xs-12 col-sm-4">
-        <!-- calls helper method, returns url -->
+    <div class="col-xs-12 col-sm-offset-2 col-sm-8">
+      <% @cars.each do |car| %>
+        <div class="col-xs-12 col-sm-4">
+          <!-- calls helper method, returns url -->
 
-        <div class="card">
-          <div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= car_image_url?(car) %>');">
-              <div class="card-location"><%= car.location %>
-              </div>
-          </div>
+          <div class="card">
+            <div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= car_image_url?(car) %>');">
+            </div>
 
             <div class="card-footer">
-              <p><%= car.brand %> <%= car.model %> | <%= car.location %></p>
+              <p><%= car.brand %> <%= car.model %>
             </div>
             <%= link_to "", car_path(car), class: "card-link" %>
 
+          </div>
         </div>
-      </div>
-    <%end%>
+      <%end%>
+    </div>
   </div>
 </div>
 
