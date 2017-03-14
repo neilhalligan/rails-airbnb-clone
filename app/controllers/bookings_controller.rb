@@ -21,12 +21,12 @@ class BookingsController < ApplicationController
   def create
     booking_params[:start_date] = Date.parse(booking_params[:start_date])
     booking_params[:end_date] = Date.parse(booking_params[:end_date])
-    @booking = Booking.new(booking_params)
-    @booking.user = current_user
-    @booking.car = @car
-    @booking.pending = true
+    @booking_blank = Booking.new(booking_params)
+    @booking_blank.user = current_user
+    @booking_blank.car = @car
+    @booking_blank.pending = true
     @hash = cars_location_marker([@car])
-    if @booking.save
+    if @booking_blank.save
       redirect_to dashboard_path
     else
       render "cars/show"

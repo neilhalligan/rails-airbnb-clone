@@ -4,9 +4,6 @@
 
       <h2> <%= @booking.car.brand %>  <%= @booking.car.model %></h2>
 
-
-
-
       <% if current_user != @booking.car.user %>
         <%= simple_form_for [@booking, @review] do |f| %>
           <%= f.input :content %>
@@ -17,11 +14,6 @@
 
 
       <h2>Booking Show</h2>
-      <!-- FOR FRONT END use following variables:
-          @owner = @booking.car.user
-          @renter = @booking.user
-          @car = @booking.car
-          @booking
        -->
       owner name: <%= @owner.name %>
       <br>
