@@ -11,6 +11,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem "geocoder"
 gem "gmaps4rails"
+gem "pg_search"
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"

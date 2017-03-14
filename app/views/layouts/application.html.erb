@@ -13,15 +13,15 @@
     <%= render 'shared/navbar.html.erb' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
-    <%= render 'shared/footer.html.erb' %>
+    <% unless controller_name == "cars" && action_name == "search" %>
+      <%= render partial: "shared/footer" %>
+    <% end %>
 
-
-
+    <%= javascript_include_tag "application" %>
+    <%= yield(:after_js) %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/markerclusterer/src/markerclusterer_compiled.js" %>
     <%= javascript_include_tag "https://cdn.rawgit.com/printercu/google-maps-utility-library-v3-read-only/master/infobox/src/infobox_packed.js" %>
-    <%= javascript_include_tag "application" %>
     <%= cloudinary_js_config %>
-    <%= yield(:after_js) %>
     <%= cloudinary_js_config %>
   </body>
 </html>

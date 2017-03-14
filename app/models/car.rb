@@ -12,5 +12,10 @@ class Car < ApplicationRecord
   validates :price, presence: true
 
   geocoded_by :location
-  after_validation :geocode, if: :location_changed?
+  # after_validation :geocode, if: :location_changed?
+  before_validation :geocode#, if: :location_changed?
+
+  include PgSearch
+   pg_search_scope :search_by_model_and_brand, :against => [:model, :brand],
+                   :using => {:tsearch => {:prefix => true}}
 end

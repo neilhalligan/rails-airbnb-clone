@@ -4,24 +4,28 @@ class CarsController < ApplicationController
 
   def search
 
-    @q = "#{params[:query]}"
-    @l = "#{params[:location]}"
+
+    # @q = "#{params[:query]}"
+    @l = params[:location]
     @cars_l = []
-    @cars_q = []
-    @cars_l += Car.near(@l, 10)
-    @q.split.each do |q|
-      q.insert(-1,"%").insert(0,"%")
-      @cars_q << Car.where("brand ILIKE ? or description ILIKE ? or model ILIKE ?", q, q, q).to_a
-    end
-    @cars_q.uniq!
-    if @cars_l.blank?
+    # @cars_q = []
+    @cars_q = Car.search_by_model_and_brand(params[:query])
+    @cars_l += Car.near(@l, 200) # change back to 10
+    # @q.split.each do |q|
+    #   q.insert(-1,"%").insert(0,"%")
+    #   @cars_q << Car.where("brand ILIKE ? or description ILIKE ? or model ILIKE ?", q, q, q).to_a
+    # end
+    # @cars_q.uniq!full_name
+    # raise
+    if params[:location].blank?
       @cars = @cars_q
-    elsif @cars_q.blank?
+    # elsif @cars_q.blank?
+    elsif params[:query].blank?
       @cars = @cars_l
     else
-      @cars = @cars_l.select { |elem| !@cars_q.include?(elem) }
+      @cars = @cars_l.select { |elem| @cars_q.include?(elem) }
     end
-    @cars.flatten!
+    # @cars.flatten!
     @hash = cars_location_marker(@cars)
     render :search
   end
