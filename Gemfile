@@ -22,12 +22,10 @@ source "https://rails-assets.org" do
 end
 
 gem "jquery-slick-rails"
-
 gem 'cloudinary', '1.1.7'
 gem 'attachinary', github: 'assembler/attachinary'
 gem 'jquery-fileupload-rails'
 gem 'coffee-rails'
-
 gem 'sass-rails'
 gem 'jquery-rails'
 gem 'uglifier'
@@ -36,16 +34,23 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+group :development do # Stuff you do not want in :test env
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 group :development, :test do
-  gem 'binding_of_caller'
-  gem 'better_errors'
-
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
   gem 'listen', '~> 3.0.5'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'launchy'
+  gem 'minitest-reporters'
+  gem 'rspec-rails'
 end
+
 
 
