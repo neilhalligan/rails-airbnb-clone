@@ -40,6 +40,7 @@ group :development do # Stuff you do not want in :test env
 end
 
 group :development, :test do
+  gem 'rails-controller-testing'
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'

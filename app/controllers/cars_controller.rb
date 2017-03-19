@@ -27,7 +27,6 @@ class CarsController < ApplicationController
     @review = Review.new
     @cars = [@car]
     @hash = cars_location_marker(@cars)
-
   end
 
   def new
