@@ -43,9 +43,6 @@ class CarsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     @car.update(car_params)
     if @car.save

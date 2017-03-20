@@ -10,6 +10,7 @@ class Car < ApplicationRecord
   validates :brand, presence: true
   validates :location, presence: true
   validates :price, presence: true
+  validates :user, presence: true
 
   geocoded_by :location
   before_validation :geocode, if: :location_changed?

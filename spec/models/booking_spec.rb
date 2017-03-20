@@ -9,7 +9,8 @@ RSpec.describe "Booking", type: :model do
     Car.create!(model: "Nissan",
                 brand: "265",
                 location: "Dublin, Ireland",
-                price: 50)
+                price: 50,
+                user: valid_user)
   end
 
   let(:valid_params) do
