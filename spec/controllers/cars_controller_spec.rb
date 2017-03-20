@@ -123,6 +123,7 @@ if defined?(CarsController)
         end
       end
     end
+
     describe "PUT update" do
       before(:each) do
         sign_in john
@@ -154,6 +155,7 @@ if defined?(CarsController)
         before(:each) do
           put :update, params: {id: nissan.id, car:{ model: nil}}
         end
+
         it "locates the requested car" do
           expect(assigns(:car)).to eq(nissan)
         end
@@ -168,6 +170,26 @@ if defined?(CarsController)
         end
       end
     end
+
+    describe "DELETE destroy" do
+      before(:each) do
+        sign_in john
+        @car = Car.create!(valid_attributes)
+      end
+
+      it "destroys car" do
+        expect {
+                delete :destroy, params: {id: @car.id}
+               }.to change(Car, :count).by(-1)
+      end
+
+      it "redirects to dashboard" do
+        delete :destroy, params: {id: @car.id}
+        expect(response).to redirect_to(dashboard_path)
+      end
+    end
+
+
   end
 
 else

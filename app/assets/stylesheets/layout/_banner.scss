@@ -1,11 +1,16 @@
 .banner {
+  margin-top: 65px;
   text-align: center;
-  height: 84vh;
+  height: 91vh;
   background-size: cover !important;
-  background-position: 50% 50%;
+  // background-position: 50% 50%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  // background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+  background-image: url('https://i.ytimg.com/vi/ihQ-MrxrsBs/maxresdefault.jpg');
+  background-position: center;
 }
 .banner h1 {
   color: white;
@@ -22,5 +27,23 @@
 
 .banner-content {
   width: 800px;
+  // display: flex;
+  justify-content: center;
+  // align-items: center;
+  // text-align: center;
 }
 
+.highlight {
+  width: 600px;
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
+  // border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  // align-items: center;
+  justify-content: space-around;
+}
+input.transparent-input{
+  background-color: rgba(0,0,0,0) !important;
+  border:none !important;
+}

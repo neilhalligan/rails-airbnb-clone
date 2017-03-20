@@ -1,18 +1,20 @@
-    <div class="banner search-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('http://eskipaper.com/images/classic-car-interior-wallpaper-1.jpg');">
+    <div class="banner search-banner" >
       <div class="banner-content" >
       <br>
-        <h1>Classic Cars</h1>
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Classic Cars</h1>
+        </div>
+      </div>
         <br><br><br>
         <%= form_tag search_cars_path do %>
-
-        <div class="row">
-        <form action="#" class="form-inline col-xs-12">
-          <input id="searchTextField" type="text" name="location" class="input-lg" placeholder="Search city, address">
-          <input type="text" name="query" class="input-lg" placeholder="Search car model, brand">
-          <input type="submit" class="btn btn-primary btn-lg" value="Search">
-          
-        </form>
-        </div>
+          <div class="highlight">
+            <form action="#" class="form-inline transparent-input">
+              <input id="searchTextField" style="width: 200px;" type="text" name="location" class="transparent-input" placeholder="Search by city">
+              <input type="text" style="width: 200px;" name="query" class=" transparent-input" placeholder="Search car model, brand">
+              <input type="submit" class="btn btn-primary" value="Search">
+            </form>
+          </div>
         <%end%>
       </div>
     </div>

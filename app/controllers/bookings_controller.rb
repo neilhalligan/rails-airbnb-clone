@@ -3,9 +3,9 @@ class BookingsController < ApplicationController
   before_action :set_car, only: [:create, :destroy]
   before_action :authenticate_user!, only: [ :create ]
 
-  def activate
-    @booking.pending = false
-  end
+  # def activate
+  #   @booking.pending = false
+  # end
 
   def show
     @review = Review.new
@@ -38,13 +38,10 @@ class BookingsController < ApplicationController
   end
 
   def update
-    if @booking.pending
-      @booking.pending = false
-      @booking.save
-      redirect_to booking_path(@booking)
-      # this redirects to the booking show page, nonetheless the btn disappearance is not dynamic
-      return
-    end
+    @booking.pending = false
+    @booking.save
+    redirect_to booking_path(@booking)
+    # preferably give a flash msg to say booking accepted, no redirect (use ajax)
   end
 
   def destroy

@@ -18,6 +18,7 @@ class Booking < ApplicationRecord
 
   def check_booking_date
     self.car.bookings.each do |booking|
+      next if booking == self
       unless self.start_date > booking.end_date || self.end_date < booking.start_date
         errors.add(:end_date, "Car already booked for these dates")
       end
