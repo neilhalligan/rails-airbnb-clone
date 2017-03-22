@@ -1,34 +1,50 @@
 <%= render 'shared/search_banner' %>
+<div class="wrapper-grey">
+  <div class="container text-center light-grey-background" style="width: 85%;">
+    <h1>Car Listings</h1>
 
-<div class="container text-center">
-<br>
-  <h1>Car Listings</h1>
-  <br>
-  <div class="row">
-    <div class="col-xs-12 col-sm-offset-2 col-sm-8">
-      <% @cars.each do |car| %>
-        <div class="col-xs-12 col-sm-4">
-          <!-- calls helper method, returns url -->
 
-          <div class="card">
-            <div class="card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= car_image_url?(car) %>');">
-            </div>
+    <div class="row">
+      <div class="col-xs-12">  <!-- col-sm-offset-2 col-sm-8 -->
+        <% @cars.sample(21).each do |car| %>
+          <div class="col-xs-12 col-sm-4">
+            <section id="content">
+              <%= link_to "", car_path(car), class: "card-link"%>
 
-            <div class="card-footer">
-              <p><%= car.brand %> <%= car.model %>
-            </div>
-            <%= link_to "", car_path(car), class: "card-link" %>
+              <h4><%=car.brand%> <%=car.model%></h4>
 
+              <div id="profile_pic" style="background: url(<%= avatar_url(car.user)%>);">
+               <%#= image_tag avatar_url(car.user), class: "profile_pic" %>
+              </div>
+
+              <div id="head" style="background: url(<%= car_image_url?(car)%>);"></div>
+
+              <p>
+                <i class="fa fa-user-o" aria-hidden="true"></i>  <%=car.user.name%>
+              </p>
+              <p>
+                <i class="fa fa-money" aria-hidden="true"></i>  €<%=car.price%>
+              </p>
+              <p>
+                <i class="fa fa-globe" aria-hidden="true"></i>  <%=car.location%>
+              </p>
+              <p><i class="fa fa-star" style="color: #ffb400"></i>
+                <i class="fa fa-star" style="color: #ffb400"></i>
+                <i class="fa fa-star" style="color: #ffb400"></i>
+                <i class="fa fa-star" style="color: #ffb400"></i>
+                <i class="fa fa-star" style="color: #cacccd"></i>
+              </p>
+
+
+
+            </section>
           </div>
-        </div>
-      <%end%>
+        <%end%>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="text-center padded">
-  <%= link_to "Add new car", new_car_path, class: "btn btn-lg btn-success" %>
-</div>
 <script>
   var input = document.getElementById('searchTextField');
   var options = {

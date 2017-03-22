@@ -1,0 +1,19 @@
+.btn-primary {
+    color: #fff;
+    background-color: #000000;
+    border-color: #777777;
+    transition: 0.3s;
+}
+
+.btn-primary:focus {
+  color: #fff;
+  background-color: #da552f;
+  border-color: #f7b48c;
+  outline:0;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #da552f;
+  border-color: #f7b48c;
+}

@@ -1,17 +1,23 @@
 .banner {
+  margin-top: 65px;
   text-align: center;
-  height: 84vh;
+  height: 91vh;
   background-size: cover !important;
-  background-position: 50% 50%;
+  // background-position: 50% 50%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center !important;
+  // background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+  background-image: url('https://i.ytimg.com/vi/ihQ-MrxrsBs/maxresdefault.jpg');
+  background-position: center;
 }
 .banner h1 {
   color: white;
+  text-shadow: 8px 0 black; //, 0px 0 black; //#, 0 2px black, 5px 0 black, 0 -5px black;
   font-size: 70px;
   font-weight: bold;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  // text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
 .banner p {
   color: white;
@@ -21,6 +27,47 @@
 }
 
 .banner-content {
-  width: 800px;
+  margin-top: -50px;
+  width: 600px;
+  // display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+.highlight {
+  margin-top: 30px;
+  width: 600px;
+  color: white;
+  display: flex;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 13px 10px;
+  position: center;
+  // display: flex;
+  // align-items: center;
+  justify-content: space-around;
+}
+
+.highlight:focus {
+  background: rgba(0, 0, 0, 0.8);
+}
+input.transparent-input{
+  background-color: rgba(0,0,0,0) !important;
+  border:none !important;
+  transition: 0.4s
+}
+
+input.transparent-input:focus {
+  background-color: white !important;
+  color: black;
+  border:none !important;
+  outline:white;
+}
+
+.shadow-text {
+  color: white;
+  text-shadow: 2px 0 black; //, 0px 0 black; //#, 0 2px black, 5px 0 black, 0 -5px black;
+  // font-size: 70px;
+  font-weight: bold;
+}

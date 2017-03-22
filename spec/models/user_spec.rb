@@ -3,16 +3,21 @@ require 'rails_helper'
 RSpec.describe "User", type: :model do
   let(:valid_attributes) do
     {
-      email: "john@gmail.com",
-      password: "123456"
+      email: "frank@gmail.com",
+      password: "1234567"
     }
+  end
+
+  let(:john) do
+    User.create!(email: "john@gmail.com", password: "123456")
   end
 
   let(:valid_car) do
     Car.create!(model: "Nissan",
                 brand: "265",
                 location: "Dublin, Ireland",
-                price: 50)
+                price: 50,
+                user: john)
   end
 
   it "has many cars" do

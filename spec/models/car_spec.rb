@@ -2,17 +2,19 @@ require 'rails_helper'
 require 'date'
 
 RSpec.describe "Car", :type => :model do
+
+  let(:john) do
+    User.new(email: "john@gmail.com", password: "123456")
+  end
+
   let(:valid_attributes) do
     {
       model: "Nissan",
       brand: "265",
       location: "Dublin, Ireland",
-      price: 50
+      price: 50,
+      user: john
     }
-  end
-
-  let(:john) do
-    User.new(email: "john@gmail.com", password: "123456")
   end
 
   it "has a model" do
@@ -70,6 +72,12 @@ RSpec.describe "Car", :type => :model do
 
   it "price cannot be blank" do
     valid_attributes.delete(:location)
+    car = Car.new(valid_attributes)
+    expect(car).not_to be_valid
+  end
+
+  it "user cannot be blank" do
+    valid_attributes.delete(:user)
     car = Car.new(valid_attributes)
     expect(car).not_to be_valid
   end

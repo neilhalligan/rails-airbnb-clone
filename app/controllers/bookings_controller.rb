@@ -3,21 +3,6 @@ class BookingsController < ApplicationController
   before_action :set_car, only: [:create, :destroy]
   before_action :authenticate_user!, only: [ :create ]
 
-  def activate
-    @booking.pending = false
-  end
-
-  def show
-    @review = Review.new
-    @owner = @booking.car.user
-    @renter = @booking.user
-    @car = @booking.car
-  end
-
-  def new
-    @booking = Booking.new
-  end
-
   def create
     booking_params[:start_date] = Date.parse(booking_params[:start_date])
     booking_params[:end_date] = Date.parse(booking_params[:end_date])
@@ -33,18 +18,14 @@ class BookingsController < ApplicationController
     end
   end
 
-  def edit
-
-  end
-
   def update
-    if @booking.pending
-      @booking.pending = false
-      @booking.save
-      redirect_to booking_path(@booking)
-      # this redirects to the booking show page, nonetheless the btn disappearance is not dynamic
-      return
-    end
+    @booking.pending = false
+    @booking.save
+    # remove @bookings, @cars below and Use ajax to update page
+    @bookings = current_user.bookings
+    @cars = current_user.cars
+    render "dashboards/dashboard"
+    # preferably give a flash msg to say booking accepted, no render (use ajax)
   end
 
   def destroy
