@@ -4,7 +4,7 @@ class Car < ApplicationRecord
   has_many :users, through: :bookings
   has_many :bookings, dependent: :delete_all
 
-  has_many :reviews, through: :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings, dependent: :destroy_all
 
   validates :model, presence: true
   validates :brand, presence: true
