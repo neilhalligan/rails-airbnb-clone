@@ -15,7 +15,8 @@ RSpec.describe "Booking", type: :model do
 
   let(:valid_params) do
     { start_date: Date.new(2017,1,2),
-      end_date: Date.new(2017,1,3)
+      end_date: Date.new(2017,1,3),
+      car: valid_car
     }
   end
 
@@ -50,15 +51,21 @@ RSpec.describe "Booking", type: :model do
     expect(booking.pending).to eq(true)
   end
 
-  # it "start date cannot be blank" do
-  #   valid_params.delete(:start_date)
-  #   booking = Booking.new(valid_params)
-  #   expect(booking).not_to be_valid
-  # end
+  it "car cannot be blank" do
+    valid_params.delete(:car)
+    booking = Booking.new(valid_params)
+    expect(booking).to_not be_valid
+  end
 
-  # it "end date cannot be blank" do
-  #   valid_params.delete(:end_date)
-  #   booking = Booking.new(valid_params)
-  #   expect(booking).not_to be_valid
-  # end
+  it "start date cannot be blank" do
+    valid_params.delete(:start_date)
+    booking = Booking.new(valid_params)
+    expect(booking).not_to be_valid
+  end
+
+  it "end date cannot be blank" do
+    valid_params.delete(:end_date)
+    booking = Booking.new(valid_params)
+    expect(booking).not_to be_valid
+  end
 end

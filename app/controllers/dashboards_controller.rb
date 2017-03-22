@@ -10,9 +10,8 @@ class DashboardsController < ApplicationController
     @bookings = current_user.bookings
     # @bookings = current_user.(Booking.all)
     @cars = current_user.cars
-    @owners = []
-    current_user.bookings.each do |booking|
-      @owners << booking.car.user # consider deleting
-    end
+    # @owners = []
+    # current_user.bookings.each do |booking|
+    # @owners << booking.car.user # consider deleting
   end
 end
