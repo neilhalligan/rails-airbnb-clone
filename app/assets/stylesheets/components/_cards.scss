@@ -37,7 +37,7 @@
   right: 0;
   width: 100%;
   z-index:2;
-  background: black;
+  // background: black;
   opacity: 0;
 }
 .card-link:hover{
@@ -56,4 +56,113 @@
   background-size: cover !important;
   position: relative;
 
+}
+
+#content {
+  // width: 600px;
+  // height: 700px;
+  margin: 30px 10px;
+  width: 300px;
+  height: 450px;
+  // padding-top: 30px;
+  text-align: left;
+  color: #cecece;
+
+  background: black;
+  border-radius: 15px;
+  box-shadow: 0px 0px 8px black;
+  transition: 0.5s;
+
+  // margin-top: 80px;
+  h4 {
+    padding-top: 40px;
+    text-align: center;
+  }
+}
+
+#content:hover {
+  color: #fff;
+  background-color: $orange;
+
+  // border-color: #f7b48c;
+  font-weight: bold;
+  h4{
+      text-shadow: 2px 0 black;
+  }
+}
+
+#head {
+  width: 100%;
+  height: 200px;
+  // margin-top: 40px;
+
+  // background: url("http://codepen_images.johaneg.nl/bg.jpg");
+  background-position: right bottom;
+  // background-size: cover;
+  background-size: cover !important;
+  margin-bottom: 10px;
+
+  // border-radius: 15px 15px 0 0;
+}
+
+#profile_pic {
+  width: 60px;
+  height: 60px;
+
+  margin-left: 120px;
+  margin-top: -100px;
+
+  // background: url(<%avatar_url(car.user)%>);
+  background-position: top !important;
+  // background-size: cover;
+  background-size: cover !important;
+
+  // image-position: left top;
+  // image-size: cover;
+
+  border-radius: 100px;
+  border: 5px solid white;
+  box-shadow: 0px 0px 8px black;
+
+  position: absolute;
+}
+
+#content h1 {
+  position: absolute;
+  width: 400px;
+
+  margin-left: 100px;
+  margin-top: 150px;
+
+  font-size: 50px;
+}
+
+#content p {
+  // font-family: "icons-social";
+
+  padding: 0 30px;
+  // font-size: 50px;
+}
+
+#content ul {
+  margin-top: 250px;
+}
+
+#content ul li {
+  display: inline-block;
+  margin: 0px 40px;
+
+  -webkit-transition: all 0.5s;
+}
+
+#content ul li:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.2);
+  -webkit-transition: all 0.5s;
+}
+
+#content ul li:hover > p {
+  text-shadow: 0px 0px 5px #c7acac;
+  color: white;
+  -webkit-transition: all 0.5s;
 }
