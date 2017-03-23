@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: space-between;
   color: white;
+  position: relative;
 }
 
 .navbar-overlay {
@@ -50,6 +51,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 }
 
 /* Navbar item */

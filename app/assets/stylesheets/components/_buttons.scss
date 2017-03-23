@@ -3,6 +3,7 @@
     background-color: #000000;
     border-color: #777777;
     transition: 0.3s;
+    margin: 5px;
 }
 
 .btn-primary:focus {
@@ -16,4 +17,17 @@
   color: #fff;
   background-color: #da552f;
   border-color: #f7b48c;
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: #3B5998;
+    border: none;
+    margin: 5px;
+    transition: 0.3s;
+
+    &:hover{
+      color: #fff;
+      background-color: #6484c6;
+    }
 }
