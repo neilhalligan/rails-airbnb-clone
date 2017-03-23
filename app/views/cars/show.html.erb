@@ -92,6 +92,8 @@
           <!-- can only see add review form if logged in-->
           <% if @booking_review%>
             <%= render 'reviews/formreview', booking: @booking_review, review: @review %>
+          <% else %>
+          <p>Please place a booking before writing a review</p>
           <%end%>
         </div>
       </div>
