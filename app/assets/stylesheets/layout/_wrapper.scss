@@ -1,6 +1,9 @@
 .wrapper-grey {
   background: #333333;
-  min-height: 100%;
+  min-height: calc(100% - 74px);
+  position:relative;
+  display: flex;
+  flex-flow: column;
 }
 
 .white-background {
