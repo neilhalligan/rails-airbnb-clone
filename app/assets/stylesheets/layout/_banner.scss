@@ -55,10 +55,16 @@
 input.transparent-input{
   background-color: rgba(0,0,0,0) !important;
   border:none !important;
-  transition: 0.4s
+  transition: 1s
 }
 
 input.transparent-input:focus {
+  background-color: white !important;
+  color: black;
+  border:none !important;
+  outline:white;
+}
+input.transparent-input:hover {
   background-color: white !important;
   color: black;
   border:none !important;

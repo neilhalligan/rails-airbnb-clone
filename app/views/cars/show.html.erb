@@ -1,105 +1,111 @@
-<div class="text-center">
-  <div class="container">
-    <div class="row padded">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-        <div class="text-center">
-          <h1><%= @car.brand %> <%= @car.model %></h1>
-          <div class="slickbox">
-            <% @car.car_image.each do |img| %>
-              <div><%= cl_image_tag img.path, class: "avatar-car", width: 500 %>
-              </div>
-            <% end %>
+<div class="wrapper-grey">
+  <div class="container-wrap light-grey-background" style="width:70%">
+    <div class="text-center">
+      <!-- <div class="container"> -->
+        <div class="row">
+              <h1><%= @car.brand %> <%= @car.model %></h1>
+          <div class="col-xs-12 col-sm-offset-2 col-sm-8 ">
+            <div class="text-center">
+              <!-- <div class="slickbox"> -->
+                <% @car.car_image.each do |img| %>
+                  <div><%= cl_image_tag img.path, class: "avatar-car" %>
+                  </div>
+                <% end %>
+              <!-- </div> -->
+              <p>
+                <%= @car.location %>
+              </p>
+              <i class="fa fa-star" style="color: #ffb400"></i>
+              <i class="fa fa-star" style="color: #ffb400"></i>
+              <i class="fa fa-star" style="color: #ffb400"></i>
+              <i class="fa fa-star" style="color: #ffb400"></i>
+              <i class="fa fa-star" style="color: #cacccd"></i>
+            </div>
           </div>
-          <p>
-            <%= @car.location %>
-          </p>
-          <i class="fa fa-star" style="color: #ffb400"></i>
-          <i class="fa fa-star" style="color: #ffb400"></i>
-          <i class="fa fa-star" style="color: #ffb400"></i>
-          <i class="fa fa-star" style="color: #ffb400"></i>
-          <i class="fa fa-star" style="color: #cacccd"></i>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-        <h2>About the Car</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <% if current_user == @car.user %>
-          <%= link_to "Edit car description", edit_car_path(@car), class: "btn btn-primary" %>
-          <%= link_to "Delete listing", car_path(@car), { method: :destroy, class: "btn btn-danger" } %>
-        <%end%>
-        <hr>
-        <div class="row" id="flat-data">
-          <div class="col-xs-12 col-sm-2">
-            The Specs
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <ul class="list-unstyled">
-              <li>Owner: <strong><%= @car.user.email %></strong></li>
-              <li>Model: <strong><%= @car.brand %> <%= @car.model %></strong></li>
-            </ul>
-          </div>
-          <div class="col-xs-12 col-sm-4">
-            <ul class="list-unstyled">
-              <li>Condition: <strong><%= @car.description %></strong></li>
-              <li>Location: <strong><%= @car.location %></strong></li>
-              <li>Daily rate: <strong> <%= @car.price %> €</strong></li>
-            </ul>
-          </div>
-        </div>
-        <hr>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6">
-        <div id="map" style="width: 100%; height: 300px;">
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <div class="padding">
-          <% if @car.user != current_user %>
-            <!-- <div class="col-xs-4 col-sm-3 col-sm-offset-4"> -->
-              <h1>New Booking</h1>
-              <%= simple_form_for [@car, @booking_blank] do |f| %>
-                <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}, placeholder: "from"  %>
-                <%= f.input :end_date, as: :string, input_html: {class: "datepicker"}, placeholder: "to"  %>
-                <%= f.submit "Book your ride", class: "btn btn-primary" %>
-              <% end %>
-            <!-- </div> -->
-          <%end%>
-        </div>
-      </div>
-    </div>
-    <hr>
-    <%# if !@car.reviews.empty? %>
-      <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-          <h2>
-            <%= pluralize @car.reviews.size, "review" %>
-          </h2>
-          <div id="reviews">
-            <% if @car.reviews.blank? %>
-              <p>Be first to leave a review for the <%= @car.brand%> <%=@car.model%></p>
-            <% else %>
-              <% @car.reviews.each do |review| %>
-                  <%= render 'reviews/show', review: review %>
-              <%end%>
+
+        <!-- </div> -->
+        <div class="row">
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <h2>About the Car</h2>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <% if current_user == @car.user %>
+              <%= link_to "Edit car description", edit_car_path(@car), class: "btn btn-primary" %>
+              <%= link_to "Delete listing", car_path(@car), { method: :destroy, class: "btn btn-danger" } %>
             <%end%>
+            <hr>
+            <div class="row" id="flat-data">
+              <div class="col-xs-12 col-sm-2">
+                The Specs
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <ul class="list-unstyled">
+                  <li>Owner: <strong><%= @car.user.email %></strong></li>
+                  <li>Model: <strong><%= @car.brand %> <%= @car.model %></strong></li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-sm-4">
+                <ul class="list-unstyled">
+                  <li>Condition: <strong><%= @car.description %></strong></li>
+                  <li>Location: <strong><%= @car.location %></strong></li>
+                  <li>Daily rate: <strong> <%= @car.price %> €</strong></li>
+                </ul>
+              </div>
+            </div>
+            <hr>
           </div>
-          <!-- can only see add review form if logged in-->
-          <% if @booking_review%>
-            <%= render 'reviews/formreview', booking: @booking_review, review: @review %>
-          <% else %>
-          <p>Please place a booking before writing a review</p>
-          <%end%>
         </div>
-      </div>
-    <%#end%>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <div id="map" style="width: 100%; height: 300px;">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 ">
+            <div class="padding">
+              <% if @car.user != current_user %>
+                <!-- <div class="col-xs-4 col-sm-3 col-sm-offset-4"> -->
+                  <h1>New Booking</h1>
+                  <%= simple_form_for [@car, @booking_blank] do |f| %>
+                    <%= f.input :start_date, as: :string, input_html: {class: "datepicker"}, placeholder: "from"  %>
+                    <%= f.input :end_date, as: :string, input_html: {class: "datepicker"}, placeholder: "to"  %>
+                    <%= f.submit "Book your ride", class: "btn btn-primary" %>
+                  <% end %>
+                <!-- </div> -->
+              <%end%>
+            </div>
+          </div>
+
+        </div>
+        <hr>
+        <%# if !@car.reviews.empty? %>
+          <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+              <h2>
+                <%= pluralize @car.reviews.size, "review" %>
+              </h2>
+              <div id="reviews">
+                <% if @car.reviews.blank? %>
+                  <p>Be first to leave a review for the <%= @car.brand%> <%=@car.model%></p>
+                <% else %>
+                  <% @car.reviews.each do |review| %>
+                      <%= render 'reviews/show', review: review %>
+                  <%end%>
+                <%end%>
+              </div>
+              <!-- can only see add review form if logged in-->
+              <% if @booking_review%>
+                <%= render 'reviews/formreview', booking: @booking_review, review: @review %>
+              <% else %>
+              <p>Please place a booking before writing a review</p>
+              <%end%>
+            </div>
+          </div>
+        <%#end%>
+      <!-- </div> -->
+      <hr>
+    </div>
   </div>
-  <hr>
 </div>
 <% content_for(:after_js) do %>
   <%= javascript_include_tag "https://maps.google.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_BROWSER_KEY']}" %>

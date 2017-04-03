@@ -33,6 +33,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
+# gem 'compass-rails'  # ~> 1.1.7'
 
 group :development do # Stuff you do not want in :test env
   gem 'better_errors'
