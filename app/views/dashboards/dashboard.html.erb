@@ -10,11 +10,10 @@
       <hr>
       <div class="row">
         <div class="col-xs-12 col-sm-6">
-          <ul>
-            <% @cars.each do |car| %>
-              <li><%= link_to "#{car.brand} #{car.model}", car_path(car) %></li>
+          <p>  <% @cars.each do |car| %>
+              <%= link_to "#{car.brand} #{car.model}", car_path(car),class: "btn btn-primary" %>
             <% end %>
-          </ul>
+          </p>
       <%= link_to "Add new car", new_car_path, class: "btn btn-lg btn-primary" %>
         </div>
       </div>
@@ -83,7 +82,9 @@
               <li>Start Date: <%= booking.start_date %></li>
               <li>End Date: <%= booking.end_date %></li>
               <% if Time.now > booking.end_date %>
-                <li><%= link_to "Add review", booking_path(booking) %></li>
+              <p>
+                <%= link_to "Add review", car_path(booking.car), class: "btn btn-primary" %>
+              </p>
               <% end %>
             </ul>
           </div>
